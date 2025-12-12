@@ -1,12 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AdminAuthController;
-use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\NewsController;
-use App\Http\Controllers\Admin\DocumentController;
-use App\Http\Controllers\Admin\UniversityLinkController;
-use App\Http\Controllers\EventController;
 
 // Главная страница
 Route::get('/', function () {
@@ -61,29 +55,4 @@ Route::get('/publications', function () {
 Route::get('/webinars', function () {
     return view('pages.webinars');
 });
-
-// --- ADMIN AUTH (URL only) ---
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AdminAuthController::class, 'login'])->name('login.submit');
-    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
-});
-
-// --- ADMIN PANEL (protected) ---
-Route::prefix('admin')->name('admin.')->middleware('admin.auth')->group(function () {
-    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
-
-    // CRUD News (DB)
-    Route::resource('news', NewsController::class);
-
-    // CRUD Documents (DB)
-    Route::resource('documents', DocumentController::class);
-
-    // University links (NO DB) — JSON file storage
-    Route::get('universities', [UniversityLinkController::class, 'index'])->name('universities.index');
-    Route::get('universities/{universityKey}', [UniversityLinkController::class, 'edit'])->name('universities.edit');
-    Route::post('universities/{universityKey}', [UniversityLinkController::class, 'update'])->name('universities.update');
-});
-
-Route::get('/events', [EventController::class, 'index'])->name('events');
 

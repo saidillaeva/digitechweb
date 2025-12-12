@@ -1,80 +1,66 @@
 @extends('layouts.main')
 
+@section('title', __('home.title'))
+
 @section('content')
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>DigiTech Project</h1>
-            <p>Digital Education & Research Development in Kyrgyzstan</p>
-            <a href="#welcome" class="btn">Learn More</a>
-        </div>
-        <div class="scroll-down">⌄</div>
-    </section>
+    {{-- ================= HERO ================= --}}
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
 
+        <div class="hero-content" data-aos="fade-up">
+            <h1>{{ __('home.hero_title') }}</h1>
+            <p>{{ __('home.hero_subtitle') }}</p>
 
-    <!-- WELCOME -->
-    <section id="welcome" class="section welcome">
-        <div class="container welcome-inner">
-
-            <div class="welcome-text">
-                <h2>Welcome to <span class="highlight">DigiTech</span></h2>
-
-                <p>
-                    DigiTech is an international initiative focused on strengthening digital education,
-                    research capacity, and innovation across Kyrgyzstan,
-                    in collaboration with leading European universities.
-                </p>
-
-                <div class="stats">
-                    <div><b>8+</b><span>Universities</span></div>
-                    <div><b>12</b><span>Training Programs</span></div>
-                    <div><b>200+</b><span>Researchers Involved</span></div>
-                </div>
-
-                <a href="{{ url('/about') }}" class="btn-secondary">Learn more</a>
-            </div>
-
-            <img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop"
-                alt="Digital Lab"
-                class="welcome-img"
-            />
-
+            <a href="{{ route('about') }}" class="hero-btn">
+                {{ __('home.learn_more') }}
+            </a>
         </div>
     </section>
 
 
-    <!-- MAIN OBJECTIVES -->
-    <section class="section">
+    {{-- ================= WELCOME ================= --}}
+    <section class="welcome">
         <div class="container">
-            <h2 style="color: #0f172a;">Main Objectives</h2>
-            <p class="muted">Core focus areas of the DigiTech project</p>
+            <div class="welcome-inner" data-aos="fade-up">
 
-            <div class="cards">
+                <div class="welcome-card">
+                    <h2 class="welcome-title">
+                        {{ __('home.welcome_title') }}
+                    </h2>
 
-                <div class="card">
-                    <div class="icon-circle">🎓</div>
-                    <b>Modernize Education</b>
-                    <p>Develop digital curricula aligned with EU standards to transform teaching and learning.</p>
+                    <p class="welcome-text">
+                        {{ __('home.welcome_text_1') }}
+                    </p>
+
+                    <p class="welcome-text">
+                        {{ __('home.welcome_text_2') }}
+                    </p>
+
+                    <div class="stats-box">
+                        <div class="stat-item">
+                            <h3>8+</h3>
+                            <p>{{ __('home.stats_partners') }}</p>
+                        </div>
+
+                        <div class="stat-item">
+                            <h3>12+</h3>
+                            <p>{{ __('home.stats_programs') }}</p>
+                        </div>
+
+                        <div class="stat-item">
+                            <h3>200+</h3>
+                            <p>{{ __('home.stats_beneficiaries') }}</p>
+                        </div>
+                    </div>
+
+                    <a href="{{ route('about') }}" class="welcome-btn">
+                        {{ __('home.learn_more') }}
+                    </a>
                 </div>
 
-                <div class="card">
-                    <div class="icon-circle">💻</div>
-                    <b>Digital Research Tools</b>
-                    <p>Introduce advanced software and open-access tools to boost scientific productivity.</p>
-                </div>
-
-                <div class="card">
-                    <div class="icon-circle">🤝</div>
-                    <b>International Collaboration</b>
-                    <p>Build lasting partnerships between Kyrgyz and European universities for sustainable growth.</p>
-                </div>
-
-                <div class="card">
-                    <div class="icon-circle">🌍</div>
-                    <b>Global Research Culture</b>
-                    <p>Encourage academic mobility, open science, and high ethical standards in research.</p>
+                <div class="welcome-image">
+                    <img src="{{ asset('assets/img/welcome.jpg') }}" alt="DIGITECH">
                 </div>
 
             </div>
@@ -82,38 +68,105 @@
     </section>
 
 
-    <!-- LATEST EVENTS -->
-    <section class="section">
-        <div class="container">
-            <h2>Latest Events</h2>
+    {{-- ================= PROJECT AIMS ================= --}}
+    <section class="objectives">
+        <h2 class="section-title">{{ __('home.aims_title') }}</h2>
+        <p class="section-subtitle">{{ __('home.aims_subtitle') }}</p>
 
+        <div class="container">
+            <div class="objectives-grid">
+
+                <div class="objective-card" data-aos="fade-up">
+                    <img src="{{ asset('assets/icons/education.svg') }}" class="obj-icon">
+                    <h3>Modernize Education</h3>
+                    <p>
+                        Integration of Big Data, Machine Learning and AI into technical education.
+                    </p>
+                </div>
+
+                <div class="objective-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="{{ asset('assets/icons/training.svg') }}" class="obj-icon">
+                    <h3>High-Quality Training</h3>
+                    <p>
+                        Teacher training and continuous professional development.
+                    </p>
+                </div>
+
+                <div class="objective-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="{{ asset('assets/icons/inclusion.svg') }}" class="obj-icon">
+                    <h3>Inclusivity</h3>
+                    <p>
+                        Equal opportunities for all students and regions.
+                    </p>
+                </div>
+
+                <div class="objective-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="{{ asset('assets/icons/economy.svg') }}" class="obj-icon">
+                    <h3>Economic Growth</h3>
+                    <p>
+                        Improving employability and sustainable development.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    {{-- ================= MAIN OBJECTIVE ================= --}}
+    <section class="objectives light">
+        <h2 class="section-title">{{ __('home.main_objective') }}</h2>
+        <p class="section-subtitle">{{ __('home.main_subtitle') }}</p>
+
+        <div class="container">
+            <div class="objectives-grid">
+
+                <div class="objective-card" data-aos="zoom-in">
+                    <img src="{{ asset('assets/icons/bachelor.svg') }}" class="obj-icon">
+                    <h3>Updated Bachelor Programs</h3>
+                    <p>
+                        New and updated curricula with AI, ML and Big Data.
+                    </p>
+                </div>
+
+                <div class="objective-card" data-aos="zoom-in" data-aos-delay="150">
+                    <img src="{{ asset('assets/icons/lab.svg') }}" class="obj-icon">
+                    <h3>Digital Twin Labs</h3>
+                    <p>
+                        Establishment of Digital Twin laboratories at HEIs.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    {{-- ================= LATEST EVENTS ================= --}}
+    <section class="events">
+        <h2 class="section-title">{{ __('home.events_title') }}</h2>
+        <p class="section-subtitle">{{ __('home.events_subtitle') }}</p>
+
+        <div class="container">
             <div class="events-grid">
 
-                <div class="event-card">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop">
-                    <div class="event-body">
-                        <b>Kick-off Meeting in Bishkek</b>
-                        <span class="muted">October 2024</span>
-                        <a href="#">Read more</a>
-                    </div>
+                {{-- карточки будут подгружаться админом --}}
+                <div class="event-card" data-aos="fade-up">
+                    <div class="event-date">2025</div>
+                    <h3>Project Kick-off Meeting</h3>
+                    <p>Launch of DIGITECH consortium activities.</p>
                 </div>
 
-                <div class="event-card">
-                    <img src="https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&auto=format&fit=crop">
-                    <div class="event-body">
-                        <b>Digital Workshop in Osh</b>
-                        <span class="muted">August 2024</span>
-                        <a href="#">Read more</a>
-                    </div>
+                <div class="event-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="event-date">2025</div>
+                    <h3>Training Workshop</h3>
+                    <p>Teacher training on AI and Digital Twins.</p>
                 </div>
 
-                <div class="event-card">
-                    <img src="https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=800&auto=format&fit=crop">
-                    <div class="event-body">
-                        <b>Online Research Webinar</b>
-                        <span class="muted">June 2024</span>
-                        <a href="#">Read more</a>
-                    </div>
+                <div class="event-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="event-date">2025</div>
+                    <h3>International Conference</h3>
+                    <p>Industry 4.0 and education transformation.</p>
                 </div>
 
             </div>
@@ -121,40 +174,23 @@
     </section>
 
 
-    <!-- PARTNERS -->
+    {{-- ================= PARTNERS ================= --}}
     <section class="partners">
-        <div class="container">
-            <h2>Our Partners</h2>
-            <p class="muted">Supported by European and Kyrgyz institutions</p>
+        <h2 class="section-title">{{ __('home.partners_title') }}</h2>
+        <p class="section-subtitle">{{ __('home.partners_subtitle') }}</p>
 
-            <div class="partners-slider">
-                <div class="slider-edge-left"></div>
-                <div class="slider-edge-right"></div>
+        <div class="partners-carousel">
+            <img src="{{ asset('assets/img/partners/haw.png') }}">
+            <img src="{{ asset('assets/img/partners/maribor.png') }}">
+            <img src="{{ asset('assets/img/partners/inai.png') }}">
+            <img src="{{ asset('assets/img/partners/ysu.png') }}">
+            <img src="{{ asset('assets/img/partners/asue.png') }}">
+            <img src="{{ asset('assets/img/partners/gtu.png') }}">
+            <img src="{{ asset('assets/img/partners/btu.png') }}">
+        </div>
 
-                <div class="partners-track">
-
-                    <div class="logo-card"><img src="{{ asset('assets/img/eu.jpg') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/erasmus.jpg') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer1.jpg') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer2.png') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer3.webp') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer4.jpg') }}"></div>
-
-                    {{-- Duplicate for scrolling --}}
-                    <div class="logo-card"><img src="{{ asset('assets/img/eu.jpg') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/erasmus.jpg') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer1.jpg') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer2.png') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer3.webp') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer4.jpg') }}"></div>
-
-                </div>
-            </div>
-
-            <div class="trust-badge">
-                Trusted by leading institutions worldwide
-            </div>
-
+        <div class="partners-bottom">
+            Trusted by leading universities and institutions
         </div>
     </section>
 

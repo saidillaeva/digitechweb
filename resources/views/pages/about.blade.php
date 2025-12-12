@@ -2,34 +2,40 @@
 
 @section('content')
 
-    <!-- ========== HERO ABOUT ========== -->
+    <!-- ===== HERO ABOUT ===== -->
     <section class="about-hero">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
+
         <div class="hero-content">
-            <h1>About DigiTech</h1>
-            <p>Transforming education and research through digital innovation and global partnerships.</p>
+            <h1>{{ __('about.hero_title') }}</h1>
+            <p>{{ __('about.hero_subtitle') }}</p>
         </div>
     </section>
 
-    <!-- ========== MISSION ========== -->
+
+    <!-- ===== ABOUT LINKS ===== -->
     <section class="mission">
         <div class="container">
             <div class="mission-inner">
 
                 <div class="mission-text">
-                    <h2>Our Mission</h2>
-                    <p>
-                        We are dedicated to transforming businesses through innovative digital solutions.
-                        Our team combines creativity, technology, and strategic thinking to deliver exceptional results
-                        that drive growth and success. We believe in building lasting partnerships and creating value
-                        that extends beyond traditional boundaries.
-                    </p>
+                    <h2>{{ __('about.online_title') }}</h2>
+                    <p>{{ __('about.online_desc') }}</p>
+
+                    <ul class="about-links">
+                        <li>
+                            <a href="{{ route('partners') }}">
+                                {{ __('about.link1') }}
+                            </a>
+                        </li>
+                    </ul>
+
                 </div>
 
                 <div class="mission-image">
                     <div class="image-wrapper">
-                        <img src="{{ asset('assets/img/mission.webp') }}" alt="Team collaboration">
+                        <img src="{{ asset('assets/img/mission.webp') }}" alt="Mission">
                     </div>
                 </div>
 
@@ -37,95 +43,57 @@
         </div>
     </section>
 
-    <!-- ========== STATS WITH COUNTER ========== -->
+
+    <!-- ===== DIGITECH IN NUMBERS ===== -->
     <section class="stats reveal">
         <div class="container">
-            <h2 class="section-title"><span>DigiTech in Numbers</span></h2>
+            <h2 class="section-title"><span>{{ __('about.stats_title') }}</span></h2>
 
             <div class="stats-grid">
                 <div class="stat">
-                    <span class="number" data-target="12">0</span>
-                    <p>Partner Universities</p>
+                    <span class="number" data-target="8">0</span>
+                    <p>{{ __('about.stat_universities') }}</p>
                 </div>
 
                 <div class="stat">
-                    <span class="number" data-target="4">0</span>
-                    <p>Digital Laboratories</p>
+                    <span class="number" data-target="6">0</span>
+                    <p>{{ __('about.stat_labs') }}</p>
                 </div>
 
                 <div class="stat">
                     <span class="number" data-target="120">0</span>
-                    <p>PhD Students Trained</p>
+                    <p>{{ __('about.stat_students') }}</p>
                 </div>
 
                 <div class="stat">
-                    <span class="number" data-target="15">0</span>
-                    <p>International Events</p>
+                    <span class="number" data-target="4">0</span>
+                    <p>{{ __('about.stat_events') }}</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== TIMELINE ========== -->
+
+    <!-- ===== PROJECT JOURNEY ===== -->
     <section class="timeline reveal">
         <div class="container">
-            <h2 class="section-title"><span>Project Journey</span></h2>
+            <h2 class="section-title"><span>{{ __('about.timeline_title') }}</span></h2>
 
             <div class="timeline-wrapper">
-                <div class="tl-item">
-                    <span class="tl-year">2023</span>
-                    <p>Project proposal submitted to Erasmus+.</p>
-                </div>
-
-                <div class="tl-item">
-                    <span class="tl-year">2024</span>
-                    <p>Kick-off meeting hosted in Bishkek, roadmap approved.</p>
-                </div>
-
-                <div class="tl-item">
-                    <span class="tl-year">2025</span>
-                    <p>Opening of digital PhD labs, student mobilities and research schools.</p>
-                </div>
+                <div class="tl-item"><span class="tl-year">2025</span><p>{{ __('about.tl_start') }}</p></div>
+                <div class="tl-item"><span class="tl-year">2025</span><p>{{ __('about.tl_website') }}</p></div>
+                <div class="tl-item"><span class="tl-year">2026</span><p>{{ __('about.tl_kickoff') }}</p></div>
+                <div class="tl-item"><span class="tl-year">2026</span><p>{{ __('about.tl_agreement') }}</p></div>
+                <div class="tl-item"><span class="tl-year">2026</span><p>{{ __('about.tl_maribor') }}</p></div>
+                <div class="tl-item"><span class="tl-year">2026</span><p>{{ __('about.tl_hamburg') }}</p></div>
+                <div class="tl-item"><span class="tl-year">2026</span><p>{{ __('about.tl_labs') }}</p></div>
+                <div class="tl-item"><span class="tl-year">2027</span><p>{{ __('about.tl_training') }}</p></div>
+                <div class="tl-item"><span class="tl-year">2028</span><p>{{ __('about.tl_license') }}</p></div>
+                <div class="tl-item"><span class="tl-year">2028</span><p>{{ __('about.tl_launch') }}</p></div>
             </div>
         </div>
     </section>
 
-    <!-- ========== VALUES ========== -->
-    <section class="values reveal">
-        <div class="container">
-            <h2 class="section-title"><span>Why DigiTech Matters</span></h2>
 
-            <div class="values-grid">
-                <div class="value-box">
-                    <span class="emoji">💡</span>
-                    <span class="title">Innovation</span>
-                    <span>Digital tools, AI, e-learning platforms</span>
-                </div>
-
-                <div class="value-box">
-                    <span class="emoji">📚</span>
-                    <span class="title">Open Science</span>
-                    <span>Research ethics & publication support</span>
-                </div>
-
-                <div class="value-box">
-                    <span class="emoji">🤝</span>
-                    <span class="title">EU Partnerships</span>
-                    <span>Joint programs with European universities</span>
-                </div>
-
-                <div class="value-box">
-                    <span class="emoji">🚀</span>
-                    <span class="title">Future Skills</span>
-                    <span>Training next-generation researchers</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    {{-- JS files specific to About page --}}
-    <script src="{{ asset('assets/js/counter.js') }}"></script>
-    <script src="{{ asset('assets/js/scroll-reveal.js') }}"></script>
 
 @endsection

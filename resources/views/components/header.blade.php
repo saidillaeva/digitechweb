@@ -1,23 +1,49 @@
 <header class="header">
     <div class="container header-inner">
 
-        {{-- ЛОГОТИП --}}
-        <a class="logo" href="{{ url('/') }}">Digi<span>Tech</span></a>
+        <a href="{{ route('home') }}" class="logo">Digi<span>Tech</span></a>
 
-        {{-- Burger Menu --}}
         <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
 
-        {{-- Навигация --}}
         <nav class="nav" id="site-nav">
-            <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">Home</a>
-            <a href="{{ url('/about') }}">About the project</a>
-            <a href="{{ url('/webinars') }}">Webinars</a>
-            <a href="{{ url('/events') }}">Events</a>
-            <a href="{{ url('/publications') }}">Publications</a>
-            <a href="{{ url('/contact') }}">Contact</a>
+
+            <li class="dropdown">
+                <a href="{{ route('about') }}" class="dropdown-toggle">
+                    {{ __('menu.about') }}
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="{{ route('about') }}">
+                            <i class="fas fa-info-circle"></i> {{ __('menu.about_project') }}
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('project.documentation') }}">
+                            <i class="fas fa-file-alt"></i> {{ __('menu.project_docs') }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <a href="{{ route('partners') }}">{{ __('menu.partners') }}</a>
+            <a href="{{ route('events') }}">{{ __('menu.events') }}</a>
+            <a href="{{ route('contact') }}">{{ __('menu.contact') }}</a>
         </nav>
+
+
+        {{-- LANGUAGE SWITCHER --}}
+        <div class="lang-switcher">
+            <a href="{{ route('lang.switch', 'en') }}">EN</a>
+            <a href="{{ route('lang.switch', 'ru') }}">RU</a>
+            <a href="{{ route('lang.switch', 'ky') }}">KG</a>
+            <a href="{{ route('lang.switch', 'de') }}">DE</a>
+        </div>
 
     </div>
 </header>
