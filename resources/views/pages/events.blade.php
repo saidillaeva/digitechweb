@@ -2,12 +2,10 @@
 
 @section('content')
 
-    <!-- HERO SECTION -->
     <section class="hero hero-events">
         <h1>Meetings and events</h1>
     </section>
 
-    <!-- EVENTS LIST -->
     <section class="events-list">
         <div class="container">
             <div class="events-grid">
@@ -15,16 +13,22 @@
                 @forelse($events as $event)
                     <div class="event-card">
                         <div class="event-img-wrapper">
-                            <img src="{{ asset('storage/' . $event->image) }}"
-                                 alt="{{ $event->title }}">
+                            @if($event->image_path)
+                                <img src="{{ asset('storage/' . $event->image_path) }}"
+                                     alt="{{ $event->title }}">
+                            @else
+                                <img src="{{ asset('assets/img/event1.jpg') }}"
+                                     alt="Event image">
+                            @endif
                         </div>
 
                         <div class="event-body">
                             <b>{{ $event->title }}</b>
+
                             <p>
-                                {{ \Carbon\Carbon::parse($event->date)->format('F Y') }}
-                                — {{ $event->location }}
+                                {{ optional($event->published_at)->format('F Y') }}
                             </p>
+
                             <a href="#" class="read-btn">
                                 <span>Read more…</span>
                             </a>
@@ -36,7 +40,6 @@
 
             </div>
 
-            <!-- PAGINATION -->
             <div class="pagination">
                 {{ $events->links() }}
             </div>
