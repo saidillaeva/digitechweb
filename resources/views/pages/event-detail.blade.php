@@ -11,7 +11,7 @@
                 border-bottom: 1px solid #e5e7eb;
              ">
         <h1 style="
-            color: #0f172a;
+            color: #fcfcfd;
             font-size: 3rem;
             font-weight: 700;
             margin: 0;
