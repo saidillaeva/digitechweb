@@ -12,63 +12,117 @@ class UniversityLinkController extends Controller
 
     public function index()
     {
-        $universities = config('universities');
-        $links = $this->readJson();
-
-        return view('admin.universities.index', compact('universities','links'));
+        return view('admin.universities.index', [
+            'universities' => config('universities'),
+            'links' => $this->readJson(),
+        ]);
     }
 
     public function edit(string $universityKey)
     {
         $universities = config('universities');
-
         abort_unless(isset($universities[$universityKey]), 404);
 
         $links = $this->readJson();
-        $current = $links[$universityKey] ?? [
-            'title' => $universities[$universityKey],
-            'events' => [],
-        ];
 
         return view('admin.universities.edit', [
+            'universities' => $universities,
             'universityKey' => $universityKey,
-            'universityName' => $universities[$universityKey],
-            'current' => $current,
+            'current' => $links[$universityKey] ?? [
+                    'title' => $universities[$universityKey],
+                    'events' => [],
+                ],
         ]);
     }
 
-    public function update(Request $request, string $universityKey)
+    // ➕ CREATE NEW LINK
+    public function storeLink(Request $request, string $universityKey)
     {
-        $universities = config('universities');
-        abort_unless(isset($universities[$universityKey]), 404);
-
-        $data = $request->validate([
-            'events' => ['nullable','array'],
-            'events.*.title' => ['required','string','max:255'],
-            'events.*.url' => ['required','url','max:2048'],
+        $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'url'   => ['required', 'url', 'max:2048'],
         ]);
 
         $links = $this->readJson();
 
-        $links[$universityKey] = [
-            'title' => $universities[$universityKey],
-            'events' => array_values($data['events'] ?? []),
+        // если университета ещё нет в JSON
+        if (!isset($links[$universityKey])) {
+            $links[$universityKey] = [
+                'title' => config('universities')[$universityKey],
+                'events' => [],
+            ];
+        }
+
+        $links[$universityKey]['events'][] = [
+            'title' => $request->title,
+            'url'   => $request->url,
         ];
 
-        Storage::disk('local')->put($this->jsonPath, json_encode($links, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        $this->saveJson($links);
 
-        return redirect()->route('admin.universities.index')->with('success', 'University links saved (no DB).');
+        return back()->with('success', 'Link added');
     }
 
+
+    // ✏️ UPDATE ONE LINK
+    public function updateLink(Request $request, string $universityKey, int $index)
+    {
+        $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'url'   => ['required', 'url', 'max:2048'],
+        ]);
+
+        $links = $this->readJson();
+
+        if (!isset($links[$universityKey]['events'][$index])) {
+            return back()->with('error', 'Link not found');
+        }
+
+        $links[$universityKey]['events'][$index] = [
+            'title' => $request->title,
+            'url'   => $request->url,
+        ];
+
+        $this->saveJson($links);
+
+        return back()->with('success', 'Link updated');
+    }
+
+    // 🗑 DELETE ONE LINK
+    public function deleteLink(string $universityKey, int $index)
+    {
+        $links = $this->readJson();
+
+        if (!isset($links[$universityKey]['events'][$index])) {
+            return back()->with('error', 'Link not found');
+        }
+
+        unset($links[$universityKey]['events'][$index]);
+        $links[$universityKey]['events'] = array_values($links[$universityKey]['events']);
+
+        $this->saveJson($links);
+
+        return back()->with('success', 'Link deleted');
+    }
+
+    // ===== HELPERS =====
     private function readJson(): array
     {
         if (!Storage::disk('local')->exists($this->jsonPath)) {
             return [];
         }
 
-        $raw = Storage::disk('local')->get($this->jsonPath);
-        $decoded = json_decode($raw, true);
+        return json_decode(
+            Storage::disk('local')->get($this->jsonPath),
+            true
+        ) ?? [];
+    }
 
-        return is_array($decoded) ? $decoded : [];
+    private function saveJson(array $data): void
+    {
+        Storage::disk('local')->put(
+            $this->jsonPath,
+            json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
+        );
     }
 }

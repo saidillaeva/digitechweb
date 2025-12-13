@@ -29,9 +29,10 @@
                                 {{ optional($event->published_at)->format('F Y') }}
                             </p>
 
-                            <a href="#" class="read-btn">
+                            <a href="{{ route('event-detail', $event->slug) }}" class="read-btn">
                                 <span>Read more…</span>
                             </a>
+
                         </div>
                     </div>
                 @empty

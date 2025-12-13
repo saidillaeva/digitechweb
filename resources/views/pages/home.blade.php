@@ -144,34 +144,55 @@
 
     {{-- ================= LATEST EVENTS ================= --}}
     <section class="events">
-        <h2 class="section-title">{{ __('home.events_title') }}</h2>
-        <p class="section-subtitle">{{ __('home.events_subtitle') }}</p>
+        <h2 class="section-title">
+            <a href="{{ route('events') }}">
+                {{ __('home.events_title') }}
+            </a>
+        </h2>
+
+        <p class="section-subtitle">
+            {{ __('home.events_subtitle') }}
+        </p>
 
         <div class="container">
             <div class="events-grid">
 
-                {{-- карточки будут подгружаться админом --}}
-                <div class="event-card" data-aos="fade-up">
-                    <div class="event-date">2025</div>
-                    <h3>Project Kick-off Meeting</h3>
-                    <p>Launch of DIGITECH consortium activities.</p>
-                </div>
+                @forelse($latestEvents as $event)
+                    <div class="event-card" data-aos="fade-up">
 
-                <div class="event-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="event-date">2025</div>
-                    <h3>Training Workshop</h3>
-                    <p>Teacher training on AI and Digital Twins.</p>
-                </div>
+                        <div class="event-image">
+                            @if($event->image_path)
+                                <img src="{{ asset('storage/'.$event->image_path) }}"
+                                     alt="{{ $event->title }}">
+                            @else
+                                <img src="{{ asset('assets/img/event1.jpg') }}" alt="Event">
+                            @endif
+                        </div>
 
-                <div class="event-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="event-date">2025</div>
-                    <h3>International Conference</h3>
-                    <p>Industry 4.0 and education transformation.</p>
-                </div>
+                        <div class="event-date">
+                            {{ optional($event->published_at)->format('Y') }}
+                        </div>
+
+                        <h3>
+                            <a href="{{ route('event-detail', $event->slug) }}">
+                                {{ $event->title }}
+                            </a>
+                        </h3>
+
+                        <p>
+                            {{ $event->excerpt ?? \Illuminate\Support\Str::limit(strip_tags($event->content), 80) }}
+                        </p>
+
+                    </div>
+
+                @empty
+                    <p>No events yet.</p>
+                @endforelse
 
             </div>
         </div>
     </section>
+
 
 
     {{-- ================= PARTNERS ================= --}}

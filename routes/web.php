@@ -2,11 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\UniversityLinkController;
+use App\Http\Controllers\DocumentPageController;
+use App\Http\Controllers\PartnersPageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +19,10 @@ use App\Http\Controllers\Admin\UniversityLinkController;
 */
 
 // Home
-Route::get('/', function () {
-    return view('pages.home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])
+    ->name('home');
+
+
 
 // About
 Route::get('/about', function () {
@@ -25,9 +30,10 @@ Route::get('/about', function () {
 })->name('about');
 
 // Project Documentation
-Route::get('/about/project-documentation', function () {
-    return view('pages.project-documentation');
-})->name('project.documentation');
+Route::get(
+    '/about/project-documentation',
+    [DocumentPageController::class, 'index']
+)->name('project.documentation');
 
 // On the Web
 Route::get('/about/on-the-web', function () {
@@ -35,17 +41,15 @@ Route::get('/about/on-the-web', function () {
 })->name('on_the_web');
 
 // Partners
-Route::get('/partners', function () {
-    return view('pages.partners');
-})->name('partners');
 
-// Events (ИЗ БД)
-Route::get('/events', [EventController::class, 'index'])->name('events');
+// Events list
+Route::get('/events', [EventController::class, 'index'])
+    ->name('events');
 
-// Event detail (пока статичная)
-Route::get('/event-detail', function () {
-    return view('pages.event-detail');
-})->name('event-detail');
+// Event detail (dynamic)
+Route::get('/events/{slug}', [EventController::class, 'show'])
+    ->name('event-detail');
+
 
 // Research
 Route::get('/research', function () {
@@ -85,24 +89,49 @@ Route::prefix('admin')->name('admin.')->group(function () {
 |--------------------------------------------------------------------------
 */
 
+/*
+|--------------------------------------------------------------------------
+| ADMIN PANEL (protected)
+|--------------------------------------------------------------------------
+*/
+
 Route::prefix('admin')
     ->name('admin.')
     ->middleware('admin.auth')
     ->group(function () {
 
-        Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/', [AdminDashboardController::class, 'index'])
+            ->name('dashboard');
 
-        // CRUD News
+        // ===== NEWS =====
         Route::resource('news', NewsController::class);
 
-        // CRUD Documents
+        // ===== DOCUMENTS =====
         Route::resource('documents', DocumentController::class);
 
-        // University links (config/universities.php)
-        Route::get('universities', [UniversityLinkController::class, 'index'])->name('universities.index');
-        Route::get('universities/{universityKey}', [UniversityLinkController::class, 'edit'])->name('universities.edit');
-        Route::post('universities/{universityKey}', [UniversityLinkController::class, 'update'])->name('universities.update');
+        Route::get('universities', [UniversityLinkController::class, 'index'])
+            ->name('universities.index');
+
+        Route::get('universities/{universityKey}', [UniversityLinkController::class, 'edit'])
+            ->name('universities.edit');
+
+        Route::post(
+            'universities/{universityKey}/links',
+            [UniversityLinkController::class, 'storeLink']
+        )->name('universities.links.store');
+
+        Route::post(
+            'universities/{universityKey}/links/{index}',
+            [UniversityLinkController::class, 'updateLink']
+        )->name('universities.links.update');
+
+        Route::delete(
+            'universities/{universityKey}/links/{index}',
+            [UniversityLinkController::class, 'deleteLink']
+        )->name('universities.links.delete');
+
     });
+
 
 /*
 |--------------------------------------------------------------------------
@@ -120,3 +149,11 @@ Route::get('/lang/{locale}', function ($locale) {
 
     return redirect()->back();
 })->name('lang.switch');
+
+Route::get('/partners', [PartnersPageController::class, 'index'])
+    ->name('partners');
+
+Route::get('/partners/{universityKey}', [PartnersPageController::class, 'show'])
+    ->name('partners.show');
+
+

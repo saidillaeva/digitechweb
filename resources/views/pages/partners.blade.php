@@ -1,10 +1,38 @@
 @extends('layouts.main')
 
+@push('styles')
+    <style>
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px,1fr));
+            gap: 24px;
+        }
+
+        .partner-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 10px 30px rgba(0,0,0,.06);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(0,0,0,.12);
+        }
+
+        .partner-card img {
+            max-height: 80px;
+            margin-bottom: 14px;
+        }
+    </style>
+@endpush
+
 @section('content')
 
-    {{-- =====================================================
-       HERO
-    ===================================================== --}}
     <section class="partners-hero">
         <div class="partners-hero-content">
             <h1>{{ __('partners.title') }}</h1>
@@ -12,106 +40,18 @@
         </div>
     </section>
 
-
-    {{-- =====================================================
-       PROJECT COORDINATOR
-    ===================================================== --}}
-    <section class="partners-section">
-        <div class="container">
-            <h2 class="section-title">{{ __('partners.coordinator') }}</h2>
-
-            <a href="https://www.oshtu.kg/"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="partner-card main">
-
-                <img src="{{ asset('assets/img/partners/otu.png') }}" alt="Osh Technological University">
-                <h3>Osh Technological University</h3>
-                <span>Kyrgyzstan</span>
-            </a>
-        </div>
-    </section>
-
-
-    {{-- =====================================================
-       BENEFICIARIES
-    ===================================================== --}}
     <section class="partners-section light">
         <div class="container">
             <h2 class="section-title">{{ __('partners.beneficiaries') }}</h2>
 
             <div class="partners-grid">
-
-                <a href="https://www.haw-hamburg.de/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="partner-card">
-
-                    <img src="{{ asset('assets/img/partners/haw.png') }}" alt="HAW Hamburg">
-                    <h3>HAW Hamburg</h3>
-                    <span>Germany</span>
-                </a>
-
-                <a href="https://www.um.si/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="partner-card">
-
-                    <img src="{{ asset('assets/img/partners/maribor.png') }}" alt="University of Maribor">
-                    <h3>University of Maribor</h3>
-                    <span>Slovenia</span>
-                </a>
-
-                <a href="https://inai.kg/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="partner-card">
-
-                    <img src="{{ asset('assets/img/partners/inai.png') }}" alt="INAI.KG">
-                    <h3>INAI.KG</h3>
-                    <span>Kyrgyzstan</span>
-                </a>
-
-                <a href="https://www.ysu.am/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="partner-card">
-
-                    <img src="{{ asset('assets/img/partners/ysu.png') }}" alt="Yerevan State University">
-                    <h3>Yerevan State University</h3>
-                    <span>Armenia</span>
-                </a>
-
-                <a href="https://asue.am/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="partner-card">
-
-                    <img src="{{ asset('assets/img/partners/asue.png') }}" alt="ASUE">
-                    <h3>ASUE</h3>
-                    <span>Armenia</span>
-                </a>
-
-                <a href="https://gtu.ge/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="partner-card">
-
-                    <img src="{{ asset('assets/img/partners/gtu.png') }}" alt="GTU">
-                    <h3>GTU</h3>
-                    <span>Georgia</span>
-                </a>
-
-                <a href="https://btu.edu.ge/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="partner-card">
-
-                    <img src="{{ asset('assets/img/partners/btu.png') }}" alt="BTU">
-                    <h3>BTU</h3>
-                    <span>Georgia</span>
-                </a>
-
+                @foreach($universities as $key => $name)
+                    <a href="{{ route('partners.show',$key) }}" class="partner-card">
+                        <img src="{{ asset('assets/img/partners/'.$key.'.png') }}"
+                             alt="{{ $name }}">
+                        <h3>{{ $name }}</h3>
+                    </a>
+                @endforeach
             </div>
         </div>
     </section>
