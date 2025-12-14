@@ -6,6 +6,8 @@ return [
     'partners' => 'Өнөктөштөр',
     'events' => 'Окуялар',
     'contact' => 'Байланыш',
-    'project_docs' => 'Project Documentation',
 
+    // dropdown
+    'about_project' => 'Проект тууралуу',
+    'project_docs' => 'Проекттин документтери',
 ];
