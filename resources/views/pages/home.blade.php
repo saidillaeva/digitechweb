@@ -1,80 +1,213 @@
 @extends('layouts.main')
 
+@section('title', __('home.title'))
+
 @section('content')
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>DigiTech Project</h1>
-            <p>Digital Education & Research Development in Kyrgyzstan</p>
-            <a href="#welcome" class="btn">Learn More</a>
+    {{-- ================= HERO ================= --}}
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content" data-aos="fade-up">
+            <h1>{{ __('home.hero_title') }}</h1>
+            <p>{{ __('home.hero_subtitle') }}</p>
+
+            <a href="{{ route('about') }}" class="hero-btn">
+                {{ __('home.learn_more') }}
+            </a>
         </div>
-        <div class="scroll-down">⌄</div>
     </section>
 
 
-    <!-- WELCOME -->
-    <section id="welcome" class="section welcome">
-        <div class="container welcome-inner">
+    {{-- ================= WELCOME ================= --}}
+    <section class="welcome">
+        <div class="container">
+            <div class="welcome-inner" data-aos="fade-up">
 
-            <div class="welcome-text">
-                <h2>Welcome to <span class="highlight">DigiTech</span></h2>
+                <div class="welcome-card">
+                    <h2 class="welcome-title">
+                        {{ __('home.welcome_title') }}
+                    </h2>
 
-                <p>
-                    DigiTech is an international initiative focused on strengthening digital education,
-                    research capacity, and innovation across Kyrgyzstan,
-                    in collaboration with leading European universities.
+                    <p class="welcome-text">
+                        {{ __('home.welcome_text_1') }}
+                    </p>
+
+                    <p class="welcome-text">
+                        {{ __('home.welcome_text_2') }}
+                    </p>
+
+                    <div class="stats-box">
+                        <div class="stat-item">
+                            <h3>8+</h3>
+                            <p>{{ __('home.stats_partners') }}</p>
+                        </div>
+
+                        <div class="stat-item">
+                            <h3>12+</h3>
+                            <p>{{ __('home.stats_programs') }}</p>
+                        </div>
+
+                        <div class="stat-item">
+                            <h3>200+</h3>
+                            <p>{{ __('home.stats_beneficiaries') }}</p>
+                        </div>
+                    </div>
+
+                    <a href="{{ route('about') }}" class="welcome-btn">
+                        {{ __('home.learn_more') }}
+                    </a>
+                </div>
+
+                <div class="welcome-image">
+                    <img src="{{ asset('assets/img/welcome.png') }}" alt="DIGITECH">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    {{-- ================= PROJECT AIMS ================= --}}
+    <section class="objectives">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">{{ __('home.objectives_title') }}</h2>
+            </div>
+
+            <div class="objectives-grid">
+
+                <!-- Card 1 -->
+                <div class="objective-card">
+                    <span class="card-number">1</span>
+                    <div class="icon-wrapper">
+                        <!-- Education & Industry -->
+                        <svg class="obj-icon" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 14L21 9L12 4L3 9L12 14Z"
+                                  stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 14V20"
+                                  stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="content-wrapper">
+                        <h3>{{ __('home.objective_1_title') }}</h3>
+                        <p>{{ __('home.objective_1_text') }}</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="objective-card">
+                    <span class="card-number">2</span>
+                    <div class="icon-wrapper">
+                        <!-- People / Employability -->
+                        <svg class="obj-icon" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="9" cy="7" r="4"
+                                    stroke="currentColor" stroke-width="2"/>
+                            <path d="M1 21V19C1 16.8 3 15 5 15H13C15 15 17 16.8 17 19V21"
+                                  stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round"/>
+                            <path d="M16 3.5C17.5 4.2 18.5 5.7 18.5 7.5"
+                                  stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="content-wrapper">
+                        <h3>{{ __('home.objective_2_title') }}</h3>
+                        <p>{{ __('home.objective_2_text') }}</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="objective-card">
+                    <span class="card-number">3</span>
+                    <div class="icon-wrapper">
+                        <!-- Industry 4.0 / Digital -->
+                        <svg class="obj-icon" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="3" width="20" height="14" rx="2"
+                                  stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 21H16"
+                                  stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round"/>
+                            <path d="M12 17V21"
+                                  stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="content-wrapper">
+                        <h3>{{ __('home.objective_3_title') }}</h3>
+                        <p>{{ __('home.objective_3_text') }}</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="objective-card">
+                    <span class="card-number">4</span>
+                    <div class="icon-wrapper">
+                        <!-- Sustainability / Europe -->
+                        <svg class="obj-icon" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10"
+                                    stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6V12L16 14"
+                                  stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="content-wrapper">
+                        <h3>{{ __('home.objective_4_title') }}</h3>
+                        <p>{{ __('home.objective_4_text') }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    {{-- ================= MAIN OBJECTIVES ================= --}}
+    <section class="main-objectives">
+        <div class="main-objectives__container">
+
+            <div class="main-objectives__header">
+                <h2 class="main-objectives__title">{{ __('home.main_objectives_title') }}</h2>
+                <p class="main-objectives__subtitle">
+                    {{ __('home.main_objectives_subtitle') }}
                 </p>
-
-                <div class="stats">
-                    <div><b>8+</b><span>Universities</span></div>
-                    <div><b>12</b><span>Training Programs</span></div>
-                    <div><b>200+</b><span>Researchers Involved</span></div>
-                </div>
-
-                <a href="{{ url('/about') }}" class="btn-secondary">Learn more</a>
             </div>
 
-            <img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop"
-                alt="Digital Lab"
-                class="welcome-img"
-            />
+            <div class="main-objectives__orbit">
 
-        </div>
-    </section>
-
-
-    <!-- MAIN OBJECTIVES -->
-    <section class="section">
-        <div class="container">
-            <h2 style="color: #0f172a;">Main Objectives</h2>
-            <p class="muted">Core focus areas of the DigiTech project</p>
-
-            <div class="cards">
-
-                <div class="card">
-                    <div class="icon-circle">🎓</div>
-                    <b>Modernize Education</b>
-                    <p>Develop digital curricula aligned with EU standards to transform teaching and learning.</p>
+                <div class="main-objectives__card">
+                    <span class="main-objectives__number">1</span>
+                    <h3>{{ __('home.main_1_title') }}</h3>
+                    <p>{{ __('home.main_1_text_1') }}</p>
+                    <p>{{ __('home.main_1_text_2') }}</p>
                 </div>
 
-                <div class="card">
-                    <div class="icon-circle">💻</div>
-                    <b>Digital Research Tools</b>
-                    <p>Introduce advanced software and open-access tools to boost scientific productivity.</p>
+                <div class="main-objectives__card">
+                    <span class="main-objectives__number">2</span>
+                    <h3>{{ __('home.main_2_title') }}</h3>
+                    <p>{{ __('home.main_2_text_1') }}</p>
+                    <p>{{ __('home.main_2_text_2') }}</p>
                 </div>
 
-                <div class="card">
-                    <div class="icon-circle">🤝</div>
-                    <b>International Collaboration</b>
-                    <p>Build lasting partnerships between Kyrgyz and European universities for sustainable growth.</p>
+                <div class="main-objectives__card">
+                    <span class="main-objectives__number">3</span>
+                    <h3>{{ __('home.main_3_title') }}</h3>
+                    <p>{{ __('home.main_3_text') }}</p>
                 </div>
 
-                <div class="card">
-                    <div class="icon-circle">🌍</div>
-                    <b>Global Research Culture</b>
-                    <p>Encourage academic mobility, open science, and high ethical standards in research.</p>
+                <div class="main-objectives__card">
+                    <span class="main-objectives__number">4</span>
+                    <h3>{{ __('home.main_4_title') }}</h3>
+                    <p>{{ __('home.main_4_text_1') }}</p>
+                    <p>{{ __('home.main_4_text_2') }}</p>
                 </div>
 
             </div>
@@ -82,80 +215,72 @@
     </section>
 
 
-    <!-- LATEST EVENTS -->
-    <section class="section">
-        <div class="container">
-            <h2>Latest Events</h2>
 
+    {{-- ================= LATEST EVENTS ================= --}}
+    <section class="events">
+        <h2 class="section-title">
+            <a href="{{ route('events') }}">
+                {{ __('home.events_title') }}
+            </a>
+        </h2>
+
+
+        <div class="container">
             <div class="events-grid">
 
-                <div class="event-card">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop">
-                    <div class="event-body">
-                        <b>Kick-off Meeting in Bishkek</b>
-                        <span class="muted">October 2024</span>
-                        <a href="#">Read more</a>
-                    </div>
-                </div>
+                @forelse($latestEvents as $event)
+                    <div class="event-card" data-aos="fade-up">
 
-                <div class="event-card">
-                    <img src="https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&auto=format&fit=crop">
-                    <div class="event-body">
-                        <b>Digital Workshop in Osh</b>
-                        <span class="muted">August 2024</span>
-                        <a href="#">Read more</a>
-                    </div>
-                </div>
+                        <div class="event-image">
+                            @if($event->image_path)
+                                <img src="{{ asset('storage/'.$event->image_path) }}"
+                                     alt="{{ $event->title }}">
+                            @else
+                                <img src="{{ asset('assets/img/event1.jpg') }}" alt="Event">
+                            @endif
+                        </div>
 
-                <div class="event-card">
-                    <img src="https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=800&auto=format&fit=crop">
-                    <div class="event-body">
-                        <b>Online Research Webinar</b>
-                        <span class="muted">June 2024</span>
-                        <a href="#">Read more</a>
+                        <div class="event-date">
+                            {{ optional($event->published_at)->format('Y') }}
+                        </div>
+
+                        <h3>
+                            <a href="{{ route('event-detail', $event->slug) }}">
+                                {{ $event->title }}
+                            </a>
+                        </h3>
+
+                        <p>
+                            {{ $event->excerpt ?? \Illuminate\Support\Str::limit(strip_tags($event->content), 80) }}
+                        </p>
+
                     </div>
-                </div>
+
+                @empty
+                    <p>No events yet.</p>
+                @endforelse
 
             </div>
         </div>
     </section>
 
 
-    <!-- PARTNERS -->
+
+    {{-- ================= PARTNERS ================= --}}
     <section class="partners">
-        <div class="container">
-            <h2>Our Partners</h2>
-            <p class="muted">Supported by European and Kyrgyz institutions</p>
+        <h2 class="section-title">{{ __('home.partners_title') }}</h2>
 
-            <div class="partners-slider">
-                <div class="slider-edge-left"></div>
-                <div class="slider-edge-right"></div>
 
-                <div class="partners-track">
-
-                    <div class="logo-card"><img src="{{ asset('assets/img/eu.jpg') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/erasmus.jpg') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer1.jpg') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer2.png') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer3.webp') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer4.jpg') }}"></div>
-
-                    {{-- Duplicate for scrolling --}}
-                    <div class="logo-card"><img src="{{ asset('assets/img/eu.jpg') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/erasmus.jpg') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer1.jpg') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer2.png') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer3.webp') }}"></div>
-                    <div class="logo-card"><img src="{{ asset('assets/img/univer4.jpg') }}"></div>
-
-                </div>
-            </div>
-
-            <div class="trust-badge">
-                Trusted by leading institutions worldwide
-            </div>
-
+        <div class="partners-carousel">
+            <img src="{{ asset('assets/img/partners/haw.png') }}">
+            <img src="{{ asset('assets/img/partners/maribor.png') }}">
+            <img src="{{ asset('assets/img/partners/inai.png') }}">
+            <img src="{{ asset('assets/img/partners/ysu.png') }}">
+            <img src="{{ asset('assets/img/partners/asue.png') }}">
+            <img src="{{ asset('assets/img/partners/gtu.png') }}">
+            <img src="{{ asset('assets/img/partners/btu.png') }}">
         </div>
+
     </section>
 
 @endsection

@@ -1,0 +1,61 @@
+.project-docs {
+    padding: 80px 0;
+}
+
+.page-title {
+    font-size: 42px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.page-subtitle {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 40px;
+}
+
+.docs-section-title {
+    font-size: 32px;
+    margin-top: 60px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.docs-subtitle {
+    font-size: 20px;
+    color: #334155;
+    margin-bottom: 20px;
+}
+
+.docs-grid {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.doc-card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    width: 260px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform .3s ease;
+}
+
+.doc-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.doc-card:hover {
+    transform: translateY(-6px);
+}
+
+.other-docs-list {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 2;
+}
