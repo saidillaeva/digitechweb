@@ -1,9 +1,12 @@
 @extends('layouts.main')
 
 @section('content')
+    <link rel="stylesheet" href="{{ asset('assets/css/contact.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/contactus.css') }}">
 
     <!-- ===== CONTACT HERO ===== -->
     <section class="contact-hero">
+        style="background-image: url('{{ asset('assets/img/contactus.jpg') }}');">
         <div class="container">
             <h1>Contact Us</h1>
             <p>We'd love to hear from you — feel free to reach out!</p>
@@ -20,32 +23,70 @@
                     <h2>Send us a message</h2>
                     <p>We will get back to you as soon as possible.</p>
 
-                    <form>
+                    {{-- SUCCESS MESSAGE --}}
+                    @if (session('success'))
+                        <div class="success-message">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    {{-- ERROR MESSAGES --}}
+                    @if ($errors->any())
+                        <div class="error-message">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('contact.send') }}">
+                        @csrf
+
                         <label>
                             Name
-                            <input type="text" placeholder="Your full name">
+                            <input
+                                type="text"
+                                name="name"
+                                value="{{ old('name') }}"
+                                placeholder="Your full name"
+                                required
+                            >
                         </label>
 
                         <label>
                             Email
-                            <input type="email" placeholder="example@mail.com">
+                            <input
+                                type="email"
+                                name="email"
+                                value="{{ old('email') }}"
+                                placeholder="example@mail.com"
+                                required
+                            >
                         </label>
 
                         <label>
                             Message
-                            <textarea rows="5" placeholder="Type your message here..."></textarea>
+                            <textarea
+                                name="message"
+                                rows="5"
+                                placeholder="Type your message here..."
+                                required
+                            >{{ old('message') }}</textarea>
                         </label>
 
-                        <button type="button">Send message</button>
+                        <button type="submit">Send message</button>
                     </form>
                 </div>
 
                 <!-- RIGHT: CONTACT INFO -->
                 <div class="contact-info">
                     <h2>Contact information</h2>
-                    <p><b>Email:</b> info@digitech.kg</p>
-                    <p><b>Phone:</b> +996 (555) 000 000</p>
-                    <p><b>Address:</b> Bishkek, Kyrgyzstan</p>
+
+                    <p><strong>Email:</strong> info@digitech.kg</p>
+                    <p><strong>Phone:</strong> +996 (555) 000 000</p>
+                    <p><strong>Address:</strong> Bishkek, Kyrgyzstan</p>
 
                     <div class="map">
                         <iframe

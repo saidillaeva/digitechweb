@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 // Главная страница
@@ -28,9 +29,9 @@ Route::get('/resources', function () {
 });
 
 // Контакты
-Route::get('/contact', function () {
-    return view('pages.contact');
-});
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+
 
 
 // ----------------------
