@@ -34,6 +34,12 @@
 @section('content')
 
     <section class="partners-hero">
+
+        <div class="hero-bg"></div>
+
+        <!-- 🔹 МЯГКИЙ OVERLAY -->
+        <div class="hero-overlay"></div>
+
         <div class="partners-hero-content">
             <h1>{{ __('partners.title') }}</h1>
             <p>{{ __('partners.subtitle') }}</p>
@@ -45,14 +51,17 @@
             <h2 class="section-title">{{ __('partners.beneficiaries') }}</h2>
 
             <div class="partners-grid">
-                @foreach($universities as $key => $name)
-                    <a href="{{ route('partners.show',$key) }}" class="partner-card">
-                        <img src="{{ asset('assets/img/partners/'.$key.'.png') }}"
-                             alt="{{ $name }}">
-                        <h3>{{ $name }}</h3>
+                @foreach($universities as $u)
+                    <a href="{{ route('partners.show', $u['slug']) }}" class="partner-card">
+                        <img
+                            src="{{ asset('assets/img/partners/'.$u['logo']) }}"
+                            alt="{{ $u['name'] }}"
+                        >
+                        <h3>{{ $u['name'] }}</h3>
                     </a>
                 @endforeach
             </div>
+
         </div>
     </section>
 

@@ -17,40 +17,87 @@ img { max-width: 100%; display: block; }
 }
 
 
-
-/* ===== HERO IMAGE ===== */
+/* ================= EVENTS HERO ================= */
 .hero-events {
     position: relative;
-    height: 420px; /* немного выше, чтобы тень смотрелась гармонично */
+    height: 1100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    color: #fff;
     overflow: hidden;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45); /* основная тень */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #fff;
 }
 
-.hero-events::before {
-    content: "";
+/* 🔹 ФОН */
+.hero-events .hero-bg {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    right: 0;
+    bottom: -18%;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.55)
+        ),
+        url('../img/events.webp') center / cover no-repeat;
+
+    filter:
+        brightness(0.8)
+        contrast(1.05)
+        saturate(1.05);
+
+    z-index: 0;
+    transform: scale(1.18);
+    animation: heroZoom 14s ease-in-out infinite alternate;
+}
+
+/* 🔹 ЧЁРНЫЙ OVERLAY */
+.hero-events .hero-overlay {
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)),
-        url('../img/events.webp') center/cover no-repeat;
-    filter: brightness(0.95) saturate(1.05);
-    transform: scale(1.05);
-    z-index: 0;
-    box-shadow: inset 0 -40px 80px rgba(0,0,0,0.6); /* внутренняя нижняя тень */
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.35),
+        rgba(0, 0, 0, 0.5)
+    );
+    z-index: 1;
 }
 
-.hero-events h1 {
+/* 🔹 GLASS-КАРТОЧКА */
+.hero-events .hero-content {
     position: relative;
-    font-size: 42px;
-    font-weight: 600;
-    margin: 0;
+    z-index: 2;
+    padding: 44px 56px;
+
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
 }
+
+/* 🔹 ТЕКСТ */
+.hero-events h1 {
+    font-size: clamp(38px, 4vw, 56px);
+    margin-bottom: 12px;
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.75);
+}
+
+.hero-events p {
+    font-size: clamp(18px, 1.3vw, 22px);
+    opacity: 0.9;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* 🔹 АНИМАЦИЯ */
+@keyframes heroZoom {
+    from { transform: scale(1.12); }
+    to   { transform: scale(1.24); }
+}
+
+
 
 .section {
     padding: 90px 0;

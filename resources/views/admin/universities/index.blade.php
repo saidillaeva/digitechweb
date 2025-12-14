@@ -181,29 +181,33 @@
 
     @if(count($universities) > 0)
         <div class="row g-4">
-            @foreach($universities as $key => $name)
+            @foreach($universities as $key => $u)
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="card border-0 shadow-sm university-card h-100">
                         <div class="card-body d-flex flex-column">
-                            <div class="fw-semibold">{{ $name }}</div>
+
+                            <div class="fw-semibold">
+                                {{ $u['name'] }}
+                            </div>
 
                             <div class="text-muted small mb-3">
                                 {{ count($links[$key]['events'] ?? []) }} Links
                             </div>
 
                             <a class="btn btn-outline-dark btn-sm btn-manage mt-auto"
-                               href="{{ route('admin.universities.edit',$key) }}">
+                               href="{{ route('admin.universities.edit', $key) }}">
                                 Manage Links
                             </a>
+
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-
     @else
         <div class="empty-state">
             <p>No universities available</p>
         </div>
     @endif
+
 @endsection

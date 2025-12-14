@@ -17,7 +17,7 @@
 /* ========== ABOUT HERO ========== */
 .about-hero {
     position: relative;
-    height: 700px;
+    height: 1000px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,14 +29,28 @@
 /* 🔹 Фоновое изображение */
 .about-hero .hero-bg {
     position: absolute;
-    inset: 0;
+    top: -6%;
+    left: 0;
+    right: 0;
+    bottom: -10%;
+
     background:
-        linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.8)),
-        url('../img/hero.png') center/cover no-repeat;
-    filter: brightness(0.55) contrast(1.1) saturate(1.1);
+        /* ⬇ более лёгкий градиент */
+        linear-gradient(
+            rgba(15, 23, 42, 0.45),
+            rgba(15, 23, 42, 0.65)
+        ),
+        url('../img/about.jpg') center/cover no-repeat;
+
+    /* ⬇ меньше «черноты», больше воздуха */
+    filter:
+        brightness(0.7)
+        contrast(1.08)
+        saturate(1.15);
+
     z-index: 0;
-    transform: scale(1.1);
-    animation: heroZoom 10s ease-in-out infinite alternate;
+    transform: scale(1.16);
+    animation: heroZoom 12s ease-in-out infinite alternate;
 }
 
 

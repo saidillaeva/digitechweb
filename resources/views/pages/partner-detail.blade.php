@@ -190,12 +190,16 @@
 
     <section class="events-wrapper">
 
-        <div class="events-title">Events & Publications</div>
-        <div class="events-subtitle">
-            Official links, news and activities related to this university
+        <div class="events-title">
+            {{ __('partner-details.events_title') }}
         </div>
 
-        @if(count($events))
+        <div class="events-subtitle">
+            {{ __('partner-details.events_subtitle') }}
+        </div>
+
+
+    @if(count($events))
             <div class="events-list">
                 @foreach($events as $event)
                     <a href="{{ $event['url'] }}" target="_blank" class="event-card">
@@ -203,7 +207,10 @@
 
                         <div class="event-content">
                             <div class="event-title">{{ $event['title'] }}</div>
-                            <div class="event-meta">External link</div>
+                            <div class="event-meta">
+                                {{ __('partner-details.external_link') }}
+                            </div>
+
                         </div>
 
                         <div class="event-arrow">↗</div>
@@ -211,7 +218,10 @@
                 @endforeach
             </div>
         @else
-            <div class="empty">No links available yet.</div>
+            <div class="empty">
+                {{ __('partner-details.empty') }}
+            </div>
+
         @endif
 
     </section>

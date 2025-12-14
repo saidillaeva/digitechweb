@@ -12,209 +12,399 @@ html, body {
 /* ======================================================
    HERO (with photo background)
 ====================================================== */
+/* ================= PARTNERS HERO ================= */
 .partners-hero {
     position: relative;
-    height: 70vh;
-    background: url('../img/partners/partners-bg.jpg') center / cover no-repeat;
+    height: 1000px;                /* ⬅ реально длинный */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    overflow: hidden;
     color: #fff;
 }
 
-/* Overlay */
-.partners-hero::before {
-    content: "";
+/* 🔹 Фоновое изображение */
+.partners-hero .hero-bg {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    right: 0;
+    bottom: -18%;                 /* ⬅ ЕЩЁ ДЛИННЕЕ */
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.35),
+            rgba(0, 0, 0, 0.55)
+        ),
+        url('../img/partners/partners-bg.jpg') center / cover no-repeat;
+
+    filter:
+        brightness(0.75)
+        contrast(1.08)
+        saturate(1.15);
+
+    z-index: 0;
+    transform: scale(1.18);
+    animation: heroZoom 14s ease-in-out infinite alternate;
+}
+
+/* 🔹 Мягкий overlay для читаемости */
+.partners-hero .hero-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
-        135deg,
-        rgba(28, 32, 72, 0.85),
-        rgba(58, 63, 119, 0.75)
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0.45)
     );
-    backdrop-filter: blur(2px);
+    z-index: 1;
 }
 
-/* Content */
+/* 🔹 Контент (glassmorphism) */
 .partners-hero-content {
     position: relative;
     z-index: 2;
     max-width: 900px;
-    padding: 0 20px;
+    padding: 42px 56px;
+
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.45),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+    animation: fadeUp 1s ease-in-out;
 }
 
+/* 🔹 Заголовок */
 .partners-hero h1 {
-    font-size: 3.6rem;
-    font-weight: 700;
-    margin-bottom: 14px;
+    font-size: clamp(38px, 4.2vw, 58px);
+    margin-bottom: 16px;
+    letter-spacing: 0.6px;
+    text-shadow: 0 4px 14px rgba(0, 0, 0, 0.65);
 }
 
+/* 🔹 Подзаголовок */
 .partners-hero p {
-    font-size: 1.2rem;
-    opacity: 0.9;
+    font-size: clamp(17px, 1.3vw, 22px);
+    color: #e5e7eb;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
+
+/* 🔹 Анимации */
+@keyframes heroZoom {
+    from { transform: scale(1.12); }
+    to   { transform: scale(1.22); }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 /* ======================================================
    SECTIONS
 ====================================================== */
 .partners-section {
-    padding: 90px 0;
+    padding: 100px 0;
+    background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 50%, #f8f9ff 100%);
+    position: relative;
+    overflow: hidden;
 }
 
-.partners-section.light {
-    background: #f7f9ff;
+.partners-section::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    left: -200px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(106, 90, 249, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: floatOrb 25s ease-in-out infinite;
+}
+
+.partners-section::after {
+    content: '';
+    position: absolute;
+    bottom: -250px;
+    right: -250px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(240, 147, 251, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: floatOrb 30s ease-in-out infinite reverse;
+}
+
+@keyframes floatOrb {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(50px, -50px) scale(1.15);
+    }
 }
 
 .section-title {
     text-align: center;
-    font-size: 2.6rem;
-    font-weight: 700;
-    margin-bottom: 60px;
-    color: #1f2d55;
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 70px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 1;
+    letter-spacing: -0.5px;
 }
 
-.section-subtitle {
-    text-align: center;
-    max-width: 700px;
-    margin: -40px auto 60px;
-    color: #6e7390;
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 5px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+    border-radius: 3px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
-/* ======================================================
-   GRID
-====================================================== */
+/* PARTNERS GRID */
 .partners-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 30px;
-}
-
-/* ======================================================
-   PARTNER CARD
-====================================================== */
-.partner-card {
     position: relative;
-    background: #ffffff;
-    border-radius: 24px;
-    padding: 38px 26px;
-    text-align: center;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-    transition: all 0.35s ease;
-    overflow: hidden;
+    z-index: 1;
 }
 
-/* Gradient hover border */
+.partner-card {
+    background: white;
+    border-radius: 20px;
+    padding: 35px 24px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+}
+
 .partner-card::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #6a5af9, #8a7ffe);
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
     opacity: 0;
-    transition: 0.35s;
-    z-index: 0;
+    transition: opacity 0.4s ease;
 }
 
-.partner-card:hover::before {
-    opacity: 0.08;
+.partner-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+    opacity: 0;
+    transition: all 0.6s ease;
+    pointer-events: none;
 }
 
 .partner-card:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 30px 70px rgba(0,0,0,0.12);
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.25);
+    border-color: transparent;
 }
 
-/* Content layer */
-.partner-card > * {
-    position: relative;
-    z-index: 2;
+.partner-card:hover::before {
+    opacity: 1;
 }
 
-/* Logo */
+.partner-card:hover::after {
+    opacity: 1;
+    animation: shimmerWave 1.5s ease-in-out;
+}
+
+@keyframes shimmerWave {
+    0% {
+        transform: translate(-100%, -100%) rotate(45deg);
+    }
+    100% {
+        transform: translate(100%, 100%) rotate(45deg);
+    }
+}
+
 .partner-card img {
-    max-width: 150px;
     max-height: 90px;
-    object-fit: contain;
-    margin-bottom: 22px;
-    transition: transform 0.35s ease;
+    width: auto;
+    max-width: 100%;
+    margin-bottom: 20px;
+    filter: grayscale(0.2) opacity(0.9);
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .partner-card:hover img {
-    transform: scale(1.07);
+    filter: grayscale(0) opacity(1);
+    transform: scale(1.1) translateY(-5px);
 }
 
-/* Text */
 .partner-card h3 {
-    font-size: 1.2rem;
-    color: #1f2d55;
-    margin-bottom: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin: 0;
+    line-height: 1.4;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
 
-.partner-card p {
-    font-size: 0.95rem;
-    color: #6e7390;
-    margin-bottom: 6px;
+.partner-card:hover h3 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: translateY(-2px);
 }
 
-.partner-card span {
-    display: inline-block;
-    margin-top: 6px;
-    color: #6a5af9;
-    font-weight: 600;
+/* Staggered entrance animation */
+.partner-card {
+    animation: fadeInScale 0.6s ease-out backwards;
 }
 
-/* ======================================================
-   MAIN COORDINATOR CARD
-====================================================== */
-.partner-card.main {
-    max-width: 440px;
-    margin: auto;
-    padding: 46px;
-    background: linear-gradient(135deg, #ffffff, #f4f6ff);
-}
+.partner-card:nth-child(1) { animation-delay: 0.05s; }
+.partner-card:nth-child(2) { animation-delay: 0.1s; }
+.partner-card:nth-child(3) { animation-delay: 0.15s; }
+.partner-card:nth-child(4) { animation-delay: 0.2s; }
+.partner-card:nth-child(5) { animation-delay: 0.25s; }
+.partner-card:nth-child(6) { animation-delay: 0.3s; }
+.partner-card:nth-child(7) { animation-delay: 0.35s; }
+.partner-card:nth-child(8) { animation-delay: 0.4s; }
 
-/* ======================================================
-   RESPONSIVE
-====================================================== */
-@media (max-width: 992px) {
-    .partners-hero h1 {
-        font-size: 2.8rem;
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
     }
 }
 
+/* Alternating hover rotation */
+.partner-card:nth-child(odd):hover {
+    transform: translateY(-12px) scale(1.03) rotate(1deg);
+}
+
+.partner-card:nth-child(even):hover {
+    transform: translateY(-12px) scale(1.03) rotate(-1deg);
+}
+
+/* Decorative corner elements */
+.partner-card:nth-child(3n+1)::before {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.partner-card:nth-child(3n+2)::before {
+    background: linear-gradient(135deg, #764ba2, #f093fb);
+}
+
+.partner-card:nth-child(3n)::before {
+    background: linear-gradient(135deg, #f093fb, #667eea);
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
-    .partners-hero {
-        height: 55vh;
+    .partners-hero-content h1 {
+        font-size: 2.5rem;
     }
 
-    .partners-hero h1 {
-        font-size: 2.2rem;
-    }
-
-    .partners-hero p {
-        font-size: 1rem;
+    .partners-hero-content p {
+        font-size: 1.1rem;
     }
 
     .section-title {
-        font-size: 2.1rem;
+        font-size: 2rem;
+        margin-bottom: 50px;
+    }
+
+    .partners-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 20px;
+    }
+
+    .partner-card {
+        padding: 25px 20px;
+    }
+
+    .partner-card img {
+        max-height: 70px;
+    }
+
+    .partner-card h3 {
+        font-size: 1rem;
     }
 }
-.partner-card {
-    text-decoration: none;
+
+@media (max-width: 480px) {
+    .partners-hero {
+        min-height: 350px;
+    }
+
+    .partners-hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .partners-hero-content p {
+        font-size: 1rem;
+    }
+
+    .partners-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
 }
 
-.partner-card.main {
-    display: block;
+/* Container enhancement */
+.container {
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
-.partner-card {
-    display: block;
-    text-decoration: none;
+/* Light section enhancement */
+.light {
+    position: relative;
 }
 
-.partner-card.main {
-    max-width: 420px;
-    margin: 0 auto;
-    padding: 45px;
+/* Add subtle pattern overlay */
+.partners-section.light::before {
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(106, 90, 249, 0.03) 0%, transparent 50%),
+        repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(106, 90, 249, 0.01) 50px, rgba(106, 90, 249, 0.01) 51px);
 }

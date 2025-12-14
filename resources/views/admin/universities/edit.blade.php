@@ -269,7 +269,7 @@
     </style>
 
     <div class="page-title-wrapper">
-        <h4>Manage links: {{ $universities[$universityKey] }}</h4>
+        <h4>Manage links: {{ $universities[$universityKey]['name'] }}</h4>
     </div>
 
     @php $events = $current['events'] ?? []; @endphp

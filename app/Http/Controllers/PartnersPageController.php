@@ -35,9 +35,10 @@ class PartnersPageController
 
         $links = $this->getLinks();
         $data = $links[$universityKey] ?? [
-            'title' => $universities[$universityKey],
+            'title' => $universities[$universityKey]['name'],
             'events' => [],
         ];
+
 
         return view('pages.partner-detail', [
             'universityKey' => $universityKey,

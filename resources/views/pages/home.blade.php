@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="welcome-image">
-                    <img src="{{ asset('assets/img/welcome.jpg') }}" alt="DIGITECH">
+                    <img src="{{ asset('assets/img/welcome.png') }}" alt="DIGITECH">
                 </div>
 
             </div>
@@ -70,42 +70,98 @@
 
     {{-- ================= PROJECT AIMS ================= --}}
     <section class="objectives">
-        <h2 class="section-title">{{ __('home.aims_title') }}</h2>
-        <p class="section-subtitle">{{ __('home.aims_subtitle') }}</p>
-
         <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">{{ __('home.objectives_title') }}</h2>
+            </div>
+
             <div class="objectives-grid">
 
-                <div class="objective-card" data-aos="fade-up">
-                    <img src="{{ asset('assets/icons/education.svg') }}" class="obj-icon">
-                    <h3>Modernize Education</h3>
-                    <p>
-                        Integration of Big Data, Machine Learning and AI into technical education.
-                    </p>
+                <!-- Card 1 -->
+                <div class="objective-card">
+                    <span class="card-number">1</span>
+                    <div class="icon-wrapper">
+                        <!-- Education & Industry -->
+                        <svg class="obj-icon" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 14L21 9L12 4L3 9L12 14Z"
+                                  stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 14V20"
+                                  stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="content-wrapper">
+                        <h3>{{ __('home.objective_1_title') }}</h3>
+                        <p>{{ __('home.objective_1_text') }}</p>
+                    </div>
                 </div>
 
-                <div class="objective-card" data-aos="fade-up" data-aos-delay="100">
-                    <img src="{{ asset('assets/icons/training.svg') }}" class="obj-icon">
-                    <h3>High-Quality Training</h3>
-                    <p>
-                        Teacher training and continuous professional development.
-                    </p>
+                <!-- Card 2 -->
+                <div class="objective-card">
+                    <span class="card-number">2</span>
+                    <div class="icon-wrapper">
+                        <!-- People / Employability -->
+                        <svg class="obj-icon" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="9" cy="7" r="4"
+                                    stroke="currentColor" stroke-width="2"/>
+                            <path d="M1 21V19C1 16.8 3 15 5 15H13C15 15 17 16.8 17 19V21"
+                                  stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round"/>
+                            <path d="M16 3.5C17.5 4.2 18.5 5.7 18.5 7.5"
+                                  stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="content-wrapper">
+                        <h3>{{ __('home.objective_2_title') }}</h3>
+                        <p>{{ __('home.objective_2_text') }}</p>
+                    </div>
                 </div>
 
-                <div class="objective-card" data-aos="fade-up" data-aos-delay="200">
-                    <img src="{{ asset('assets/icons/inclusion.svg') }}" class="obj-icon">
-                    <h3>Inclusivity</h3>
-                    <p>
-                        Equal opportunities for all students and regions.
-                    </p>
+                <!-- Card 3 -->
+                <div class="objective-card">
+                    <span class="card-number">3</span>
+                    <div class="icon-wrapper">
+                        <!-- Industry 4.0 / Digital -->
+                        <svg class="obj-icon" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="3" width="20" height="14" rx="2"
+                                  stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 21H16"
+                                  stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round"/>
+                            <path d="M12 17V21"
+                                  stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="content-wrapper">
+                        <h3>{{ __('home.objective_3_title') }}</h3>
+                        <p>{{ __('home.objective_3_text') }}</p>
+                    </div>
                 </div>
 
-                <div class="objective-card" data-aos="fade-up" data-aos-delay="300">
-                    <img src="{{ asset('assets/icons/economy.svg') }}" class="obj-icon">
-                    <h3>Economic Growth</h3>
-                    <p>
-                        Improving employability and sustainable development.
-                    </p>
+                <!-- Card 4 -->
+                <div class="objective-card">
+                    <span class="card-number">4</span>
+                    <div class="icon-wrapper">
+                        <!-- Sustainability / Europe -->
+                        <svg class="obj-icon" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10"
+                                    stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6V12L16 14"
+                                  stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="content-wrapper">
+                        <h3>{{ __('home.objective_4_title') }}</h3>
+                        <p>{{ __('home.objective_4_text') }}</p>
+                    </div>
                 </div>
 
             </div>
@@ -113,33 +169,51 @@
     </section>
 
 
-    {{-- ================= MAIN OBJECTIVE ================= --}}
-    <section class="objectives light">
-        <h2 class="section-title">{{ __('home.main_objective') }}</h2>
-        <p class="section-subtitle">{{ __('home.main_subtitle') }}</p>
 
-        <div class="container">
-            <div class="objectives-grid">
+    {{-- ================= MAIN OBJECTIVES ================= --}}
+    <section class="main-objectives">
+        <div class="main-objectives__container">
 
-                <div class="objective-card" data-aos="zoom-in">
-                    <img src="{{ asset('assets/icons/bachelor.svg') }}" class="obj-icon">
-                    <h3>Updated Bachelor Programs</h3>
-                    <p>
-                        New and updated curricula with AI, ML and Big Data.
-                    </p>
+            <div class="main-objectives__header">
+                <h2 class="main-objectives__title">{{ __('home.main_objectives_title') }}</h2>
+                <p class="main-objectives__subtitle">
+                    {{ __('home.main_objectives_subtitle') }}
+                </p>
+            </div>
+
+            <div class="main-objectives__orbit">
+
+                <div class="main-objectives__card">
+                    <span class="main-objectives__number">1</span>
+                    <h3>{{ __('home.main_1_title') }}</h3>
+                    <p>{{ __('home.main_1_text_1') }}</p>
+                    <p>{{ __('home.main_1_text_2') }}</p>
                 </div>
 
-                <div class="objective-card" data-aos="zoom-in" data-aos-delay="150">
-                    <img src="{{ asset('assets/icons/lab.svg') }}" class="obj-icon">
-                    <h3>Digital Twin Labs</h3>
-                    <p>
-                        Establishment of Digital Twin laboratories at HEIs.
-                    </p>
+                <div class="main-objectives__card">
+                    <span class="main-objectives__number">2</span>
+                    <h3>{{ __('home.main_2_title') }}</h3>
+                    <p>{{ __('home.main_2_text_1') }}</p>
+                    <p>{{ __('home.main_2_text_2') }}</p>
+                </div>
+
+                <div class="main-objectives__card">
+                    <span class="main-objectives__number">3</span>
+                    <h3>{{ __('home.main_3_title') }}</h3>
+                    <p>{{ __('home.main_3_text') }}</p>
+                </div>
+
+                <div class="main-objectives__card">
+                    <span class="main-objectives__number">4</span>
+                    <h3>{{ __('home.main_4_title') }}</h3>
+                    <p>{{ __('home.main_4_text_1') }}</p>
+                    <p>{{ __('home.main_4_text_2') }}</p>
                 </div>
 
             </div>
         </div>
     </section>
+
 
 
     {{-- ================= LATEST EVENTS ================= --}}
@@ -150,9 +224,6 @@
             </a>
         </h2>
 
-        <p class="section-subtitle">
-            {{ __('home.events_subtitle') }}
-        </p>
 
         <div class="container">
             <div class="events-grid">
@@ -198,7 +269,7 @@
     {{-- ================= PARTNERS ================= --}}
     <section class="partners">
         <h2 class="section-title">{{ __('home.partners_title') }}</h2>
-        <p class="section-subtitle">{{ __('home.partners_subtitle') }}</p>
+
 
         <div class="partners-carousel">
             <img src="{{ asset('assets/img/partners/haw.png') }}">
@@ -210,9 +281,6 @@
             <img src="{{ asset('assets/img/partners/btu.png') }}">
         </div>
 
-        <div class="partners-bottom">
-            Trusted by leading universities and institutions
-        </div>
     </section>
 
 @endsection

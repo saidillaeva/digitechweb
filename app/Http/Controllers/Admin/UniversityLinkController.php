@@ -29,7 +29,7 @@ class UniversityLinkController extends Controller
             'universities' => $universities,
             'universityKey' => $universityKey,
             'current' => $links[$universityKey] ?? [
-                    'title' => $universities[$universityKey],
+                    'title' => $universities[$universityKey]['name'],
                     'events' => [],
                 ],
         ]);
@@ -45,10 +45,9 @@ class UniversityLinkController extends Controller
 
         $links = $this->readJson();
 
-        // если университета ещё нет в JSON
         if (!isset($links[$universityKey])) {
             $links[$universityKey] = [
-                'title' => config('universities')[$universityKey],
+                'title' => config('universities')[$universityKey]['name'],
                 'events' => [],
             ];
         }
@@ -62,7 +61,6 @@ class UniversityLinkController extends Controller
 
         return back()->with('success', 'Link added');
     }
-
 
     // ✏️ UPDATE ONE LINK
     public function updateLink(Request $request, string $universityKey, int $index)

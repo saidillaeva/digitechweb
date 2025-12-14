@@ -3,8 +3,21 @@
 @section('content')
 
     <section class="hero hero-events">
-        <h1>Meetings and events</h1>
+
+        <!-- ФОН -->
+        <div class="hero-bg"></div>
+
+        <!-- ЧЁРНЫЙ OVERLAY -->
+        <div class="hero-overlay"></div>
+
+        <!-- ТЕКСТ -->
+        <div class="hero-content">
+            <h1>{{ __('events.title') }}</h1>
+            <p>{{ __('events.subtitle') }}</p>
+        </div>
+
     </section>
+
 
     <section class="events-list">
         <div class="container">
@@ -14,11 +27,15 @@
                     <div class="event-card">
                         <div class="event-img-wrapper">
                             @if($event->image_path)
-                                <img src="{{ asset('storage/' . $event->image_path) }}"
-                                     alt="{{ $event->title }}">
+                                <img
+                                    src="{{ asset('storage/' . $event->image_path) }}"
+                                    alt="{{ $event->title }}"
+                                >
                             @else
-                                <img src="{{ asset('assets/img/event1.jpg') }}"
-                                     alt="Event image">
+                                <img
+                                    src="{{ asset('assets/img/event1.jpg') }}"
+                                    alt="Event image"
+                                >
                             @endif
                         </div>
 
@@ -30,13 +47,14 @@
                             </p>
 
                             <a href="{{ route('event-detail', $event->slug) }}" class="read-btn">
-                                <span>Read more…</span>
+                                <span>{{ __('events.read_more') }}</span>
                             </a>
-
                         </div>
                     </div>
                 @empty
-                    <p>No events available.</p>
+                    <p class="events-empty">
+                        {{ __('events.empty') }}
+                    </p>
                 @endforelse
 
             </div>
