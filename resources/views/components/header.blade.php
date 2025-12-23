@@ -74,9 +74,40 @@
 </header>
 
 <script>
+    // Scroll effect
     window.addEventListener('scroll', () => {
         const header = document.querySelector('.header');
         header.classList.toggle('scrolled', window.scrollY > 10);
     });
-</script>
 
+    // Mobile menu toggle
+    const burger = document.getElementById('burger');
+    const nav = document.getElementById('site-nav');
+
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        nav.classList.toggle('active');
+    });
+
+    // Mobile dropdown toggle
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+
+        toggle.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+            }
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.header') && nav.classList.contains('active')) {
+            burger.classList.remove('active');
+            nav.classList.remove('active');
+        }
+    });
+</script>

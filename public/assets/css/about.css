@@ -567,6 +567,294 @@
     line-height: 1.7;
 }
 
+/* Analytics Section - Beautiful & Chic Design */
+
+.about-visits {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-visits::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.about-visits .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.visit-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 60px 50px;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.visit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: left 0.6s ease;
+}
+
+.visit-card:hover::before {
+    left: 100%;
+}
+
+.visit-card:hover {
+    transform: translateY(-10px);
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+}
+
+.visit-card h2 {
+    font-size: 36px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.visit-count {
+    font-size: 24px;
+    color: #2c3e50;
+    margin: 30px 0;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.visit-count #about-visit-counter {
+    font-size: 48px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    min-width: 100px;
+    animation: countPulse 2s ease-in-out infinite;
+    text-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
+}
+
+@keyframes countPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.visit-note {
+    font-size: 15px;
+    color: #7f8c8d;
+    margin-top: 20px;
+    font-style: italic;
+    font-weight: 400;
+    position: relative;
+    padding-top: 20px;
+}
+
+.visit-note::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #667eea, transparent);
+    border-radius: 3px;
+}
+
+/* Reveal Animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-visits {
+        padding: 60px 20px;
+    }
+
+    .visit-card {
+        padding: 40px 30px;
+        border-radius: 25px;
+    }
+
+    .visit-card h2 {
+        font-size: 28px;
+        margin-bottom: 25px;
+        gap: 10px;
+    }
+
+    .visit-count {
+        font-size: 20px;
+        margin: 25px 0;
+        gap: 10px;
+    }
+
+    .visit-count #about-visit-counter {
+        font-size: 40px;
+        min-width: 80px;
+    }
+
+    .visit-note {
+        font-size: 14px;
+        margin-top: 15px;
+        padding-top: 15px;
+    }
+
+    .visit-note::before {
+        width: 50px;
+        height: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-visits {
+        padding: 50px 15px;
+    }
+
+    .visit-card {
+        padding: 35px 25px;
+        border-radius: 20px;
+    }
+
+    .visit-card h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        gap: 8px;
+        flex-direction: column;
+    }
+
+    .visit-count {
+        font-size: 18px;
+        margin: 20px 0;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .visit-count #about-visit-counter {
+        font-size: 36px;
+        min-width: 70px;
+    }
+
+    .visit-note {
+        font-size: 13px;
+        margin-top: 12px;
+        padding-top: 12px;
+    }
+
+    .visit-note::before {
+        width: 40px;
+    }
+}
+
+/* Additional Animation for Counter */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.visit-card.loaded h2,
+.visit-card.loaded .visit-count,
+.visit-card.loaded .visit-note {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.visit-card.loaded .visit-count {
+    animation-delay: 0.2s;
+}
+
+.visit-card.loaded .visit-note {
+    animation-delay: 0.4s;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .visit-card,
+    .reveal,
+    .visit-count #about-visit-counter {
+        animation: none;
+        transition: none;
+    }
+
+    .visit-card:hover {
+        transform: none;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .about-visits {
+        background: white;
+        padding: 20px;
+    }
+
+    .visit-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+
+
 /* Values Section */
 .values {
     padding: 100px 0;

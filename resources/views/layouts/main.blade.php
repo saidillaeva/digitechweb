@@ -25,6 +25,29 @@
 
     {{-- AOS --}}
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JT9XDNRWZS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JT9XDNRWZS');
+    </script>
+
+    <!-- Custom event: About page -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof gtag === 'function') {
+                gtag('event', 'view_about_page', {
+                    page_title: 'About DigiTech',
+                    page_path: '/about'
+                });
+            }
+        });
+    </script>
+
+
 </head>
 
 <body>

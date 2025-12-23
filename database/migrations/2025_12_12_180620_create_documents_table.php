@@ -10,14 +10,22 @@ return new class extends Migration {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
 
-            $table->string('title');
+            $table->string('title_ru');
+            $table->string('title_en');
+            $table->string('title_kg');
+            $table->string('title_de');
+
             $table->string('doc_group')->index();
             $table->string('period')->nullable()->index();
 
             $table->string('file_path');
 
             $table->date('published_at')->nullable()->index();
-            $table->text('description')->nullable();
+
+            $table->text('description_ru')->nullable();
+            $table->text('description_en')->nullable();
+            $table->text('description_kg')->nullable();
+            $table->text('description_de')->nullable();
 
             $table->timestamps();
         });

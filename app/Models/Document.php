@@ -7,36 +7,38 @@ use Illuminate\Database\Eloquent\Model;
 class Document extends Model
 {
     protected $fillable = [
-        'title','doc_group','period','file_path','published_at','description'
+        'title_ru','title_en','title_kg','title_de',
+        'description_ru','description_en','description_kg','description_de',
+        'doc_group','period','file_path','published_at'
     ];
 
     protected $casts = [
         'published_at' => 'date',
     ];
 
-    // Твои группы
     public static function groups(): array
     {
         return [
-            'progress_technical_report' => 'Progress technical report',
-            'qa_report' => 'Digitech Quality Assurance Report',
-            'external_evaluation' => 'External Evaluation',
-            'needs_analysis' => 'Needs Analysis',
-            'sustainability_strategy' => '“Sustainability, long-term impact and continuation” strategy',
-            'event_strategy' => '“The Event, Communication and Dissemination” strategy',
+            'progress_technical_report' => 'documents.groups.progress_technical_report',
+            'qa_report' => 'documents.groups.qa_report',
+            'external_evaluation' => 'documents.groups.external_evaluation',
+            'needs_analysis' => 'documents.groups.needs_analysis',
+            'sustainability_strategy' => 'documents.groups.sustainability_strategy',
+            'event_strategy' => 'documents.groups.event_strategy',
         ];
     }
 
-    // Твои периоды
     public static function periods(): array
     {
         return [
-            '6_month' => '6 month',
-            '12_month' => '12 month',
-            '18_month' => '18 month',
-            '24_month' => '24 month',
-            '30_month' => '30 month',
-            '36_month' => '36 month',
+            '6_month'  => 'documents.periods.6_month',
+            '12_month' => 'documents.periods.12_month',
+            '18_month' => 'documents.periods.18_month',
+            '24_month' => 'documents.periods.24_month',
+            '30_month' => 'documents.periods.30_month',
+            '36_month' => 'documents.periods.36_month',
         ];
     }
+
+
 }

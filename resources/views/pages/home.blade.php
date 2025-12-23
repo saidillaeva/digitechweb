@@ -214,8 +214,6 @@
         </div>
     </section>
 
-
-
     {{-- ================= LATEST EVENTS ================= --}}
     <section class="events">
         <h2 class="section-title">
@@ -224,17 +222,23 @@
             </a>
         </h2>
 
-
         <div class="container">
             <div class="events-grid">
+
+                @php
+                    $locale = app()->getLocale();          // ru | en | ky | de
+                    $dbLocale = $locale === 'ky' ? 'kg' : $locale; // kg для БД
+                @endphp
 
                 @forelse($latestEvents as $event)
                     <div class="event-card" data-aos="fade-up">
 
                         <div class="event-image">
                             @if($event->image_path)
-                                <img src="{{ asset('storage/'.$event->image_path) }}"
-                                     alt="{{ $event->title }}">
+                                <img
+                                    src="{{ asset('storage/'.$event->image_path) }}"
+                                    alt="{{ $event->{'title_'.$dbLocale} ?? $event->title_en }}"
+                                >
                             @else
                                 <img src="{{ asset('assets/img/event1.jpg') }}" alt="Event">
                             @endif
@@ -246,18 +250,23 @@
 
                         <h3>
                             <a href="{{ route('event-detail', $event->slug) }}">
-                                {{ $event->title }}
+                                {{ $event->{'title_'.$dbLocale} ?? $event->title_en }}
                             </a>
                         </h3>
 
                         <p>
-                            {{ $event->excerpt ?? \Illuminate\Support\Str::limit(strip_tags($event->content), 80) }}
+                            {{
+                                $event->{'excerpt_'.$dbLocale}
+                                ?? \Illuminate\Support\Str::limit(
+                                    strip_tags($event->{'content_'.$dbLocale} ?? $event->content_en),
+                                    80
+                                )
+                            }}
                         </p>
 
                     </div>
-
                 @empty
-                    <p>No events yet.</p>
+                    <p>{{ __('events.empty') }}</p>
                 @endforelse
 
             </div>

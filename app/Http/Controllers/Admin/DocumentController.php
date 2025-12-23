@@ -25,20 +25,29 @@ class DocumentController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title' => ['required','string','max:255'],
-            'doc_group' => ['required','string'],
-            'period' => ['nullable','string'],
-            'published_at' => ['nullable','date'],
-            'description' => ['nullable','string'],
-            'file' => ['required','file','max:10240'], // 10MB
+            'title_ru' => 'required|string|max:255',
+            'title_en' => 'required|string|max:255',
+            'title_kg' => 'required|string|max:255',
+            'title_de' => 'required|string|max:255',
+
+            'description_ru' => 'nullable|string',
+            'description_en' => 'nullable|string',
+            'description_kg' => 'nullable|string',
+            'description_de' => 'nullable|string',
+
+            'doc_group' => 'required|string',
+            'period' => 'nullable|string',
+            'published_at' => 'nullable|date',
+            'file' => 'required|file|max:10240',
         ]);
 
         $data['file_path'] = $request->file('file')->store('documents', 'public');
 
         Document::create($data);
 
-        return redirect()->route('admin.documents.index')->with('success', 'Document uploaded.');
+        return redirect()->route('admin.documents.index')->with('success', 'Document uploaded');
     }
+
 
     public function edit(Document $document)
     {
@@ -50,12 +59,20 @@ class DocumentController extends Controller
     public function update(Request $request, Document $document)
     {
         $data = $request->validate([
-            'title' => ['required','string','max:255'],
-            'doc_group' => ['required','string'],
-            'period' => ['nullable','string'],
-            'published_at' => ['nullable','date'],
-            'description' => ['nullable','string'],
-            'file' => ['nullable','file','max:10240'],
+            'title_ru' => 'required|string|max:255',
+            'title_en' => 'required|string|max:255',
+            'title_kg' => 'required|string|max:255',
+            'title_de' => 'required|string|max:255',
+
+            'description_ru' => 'nullable|string',
+            'description_en' => 'nullable|string',
+            'description_kg' => 'nullable|string',
+            'description_de' => 'nullable|string',
+
+            'doc_group' => 'required|string',
+            'period' => 'nullable|string',
+            'published_at' => 'nullable|date',
+            'file' => 'nullable|file|max:10240',
         ]);
 
         if ($request->hasFile('file')) {
@@ -65,8 +82,9 @@ class DocumentController extends Controller
 
         $document->update($data);
 
-        return redirect()->route('admin.documents.index')->with('success', 'Document updated.');
+        return redirect()->route('admin.documents.index')->with('success', 'Document updated');
     }
+
 
     public function destroy(Document $document)
     {

@@ -26,11 +26,23 @@
             </p>
 
             <div class="socials">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com/people/Inai-KG/100094699886896/#" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <a href="https://www.instagram.com/inai.kg/" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/school/inaikg/about/" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+
+                <a href="https://www.youtube.com/channel/UCLhd7843XMO-7yj3bfFA9iA" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
             </div>
+
         </div>
 
         <!-- LINKS -->

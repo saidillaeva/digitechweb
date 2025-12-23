@@ -269,15 +269,18 @@
     </style>
 
     <div class="page-title-wrapper">
-        <h4>Manage links: {{ $universities[$universityKey]['name'] }}</h4>
+        <h4>
+            {{ __('admin_universities.links_page.title') }}:
+            {{ $universities[$universityKey]['name'] }}
+        </h4>
     </div>
 
     @php $events = $current['events'] ?? []; @endphp
 
-    {{-- ================= ADD NEW LINK ================= --}}
+    {{-- ============ ADD NEW LINK ============ --}}
     <div class="card border-0 shadow-sm add-card">
         <div class="card-body">
-            <h6>➕ Add New Link</h6>
+            <h6>➕ {{ __('admin_universities.links_page.add_title') }}</h6>
 
             <form method="POST"
                   action="{{ route('admin.universities.links.store', $universityKey) }}"
@@ -285,37 +288,49 @@
                 @csrf
 
                 <div class="col-md-4">
-                    <label class="form-label">Title</label>
-                    <input class="form-control" name="title" placeholder="Enter link title" required>
+                    <label class="form-label">
+                        {{ __('admin_universities.fields.title') }}
+                    </label>
+                    <input class="form-control"
+                           name="title"
+                           placeholder="{{ __('admin_universities.fields.title') }}"
+                           required>
                 </div>
 
                 <div class="col-md-5">
-                    <label class="form-label">URL</label>
-                    <input class="form-control" name="url" placeholder="https://..." required>
+                    <label class="form-label">
+                        {{ __('admin_universities.fields.url') }}
+                    </label>
+                    <input class="form-control"
+                           name="url"
+                           placeholder="https://..."
+                           required>
                 </div>
 
                 <div class="col-md-3">
                     <button class="btn btn-add w-100">
-                        ➕ Add Link
+                        ➕ {{ __('admin_universities.actions.add') }}
                     </button>
                 </div>
             </form>
         </div>
     </div>
 
-    {{-- ================= LINKS LIST ================= --}}
+    {{-- ============ LINKS LIST ============ --}}
     @forelse($events as $i => $e)
         <div class="card border-0 shadow-sm link-card">
             <div class="card-body">
 
-                {{-- EDIT FORM --}}
+                {{-- EDIT --}}
                 <form method="POST"
                       action="{{ route('admin.universities.links.update', [$universityKey, $i]) }}"
                       class="row g-3 align-items-end">
                     @csrf
 
                     <div class="col-md-4">
-                        <label class="form-label">Title</label>
+                        <label class="form-label">
+                            {{ __('admin_universities.fields.title') }}
+                        </label>
                         <input class="form-control"
                                name="title"
                                value="{{ $e['title'] }}"
@@ -323,7 +338,9 @@
                     </div>
 
                     <div class="col-md-5">
-                        <label class="form-label">URL</label>
+                        <label class="form-label">
+                            {{ __('admin_universities.fields.url') }}
+                        </label>
                         <input class="form-control"
                                name="url"
                                value="{{ $e['url'] }}"
@@ -332,21 +349,21 @@
 
                     <div class="col-md-3">
                         <button class="btn btn-save w-100">
-                            💾 Save
+                            💾 {{ __('admin_universities.actions.save') }}
                         </button>
                     </div>
                 </form>
 
-                {{-- DELETE FORM --}}
+                {{-- DELETE --}}
                 <form method="POST"
                       action="{{ route('admin.universities.links.delete', [$universityKey, $i]) }}"
-                      onsubmit="return confirm('Delete this link?')"
+                      onsubmit="return confirm('{{ __('admin_universities.confirm.delete') }}')"
                       class="mt-3">
                     @csrf
                     @method('DELETE')
 
                     <button class="btn btn-delete">
-                        🗑 Delete Link
+                        🗑 {{ __('admin_universities.actions.delete') }}
                     </button>
                 </form>
 
@@ -354,15 +371,15 @@
         </div>
     @empty
         <div class="empty-state">
-            <p>No links added yet. Add your first link above!</p>
+            <p>{{ __('admin_universities.links_page.empty') }}</p>
         </div>
     @endforelse
 
-    {{-- BACK BUTTON --}}
+    {{-- BACK --}}
     <div class="mt-4">
         <a href="{{ route('admin.universities.index') }}"
            class="btn btn-back">
-            ← Back to Universities
+            ← {{ __('admin_universities.actions.back') }}
         </a>
     </div>
 @endsection

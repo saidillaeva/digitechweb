@@ -73,6 +73,25 @@
         </div>
     </section>
 
+    <!-- ===== ABOUT PAGE VISITS ===== -->
+    <section class="about-visits reveal">
+        <div class="container">
+            <div class="visit-card">
+                <h2>📊 {{ __('about.analytics_title') ?? 'Analytics' }}</h2>
+
+                <p class="visit-count">
+                    👀 {{ __('about.visits') ?? 'Page visits:' }}
+                    <span id="about-visit-counter">0</span>
+                </p>
+
+                <p class="visit-note">
+                    {{ __('about.analytics_note') ?? 'Statistics are updated automatically' }}
+                </p>
+            </div>
+        </div>
+    </section>
+
+
 
     <!-- ===== PROJECT JOURNEY ===== -->
     <section class="timeline reveal">
@@ -94,6 +113,34 @@
         </div>
     </section>
 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const counterEl = document.getElementById('about-visit-counter');
+            if (!counterEl) return;
+
+            let visits = localStorage.getItem('about_page_visits');
+
+            if (!visits) {
+                visits = 1;
+            } else {
+                visits = parseInt(visits) + 1;
+            }
+
+            localStorage.setItem('about_page_visits', visits);
+            counterEl.textContent = visits;
+
+            // Google Analytics event
+            if (typeof gtag === 'function') {
+                gtag('event', 'view_about_page', {
+                    page_title: 'About DigiTech',
+                    page_path: '/about',
+                    visit_count: visits
+                });
+            }
+        });
+    </script>
 
 
 @endsection

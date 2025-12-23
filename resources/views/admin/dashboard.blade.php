@@ -1,41 +1,89 @@
 @extends('admin.layout')
 
 @section('content')
-    <div class="dashboard-title">Admin Dashboard</div>
+
+    <div class="dashboard-title">
+        {{ __('admin_dashboard.title') }}
+    </div>
 
     <div class="row g-4">
+
+        {{-- NEWS --}}
         <div class="col-md-4">
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
                     <div class="card-icon">📰</div>
-                    <h5>News</h5>
-                    <p class="text-muted mb-3">Create, edit, and delete news with images.</p>
-                    <a class="btn btn-dark btn-sm" href="{{ route('admin.news.index') }}">Open Module</a>
+
+                    <h5>{{ __('admin_dashboard.news.title') }}</h5>
+                    <p class="text-muted mb-3">
+                        {{ __('admin_dashboard.news.desc') }}
+                    </p>
+
+                    <a class="btn btn-dark btn-sm"
+                       href="{{ route('admin.news.index') }}">
+                        {{ __('admin_dashboard.open') }}
+                    </a>
                 </div>
             </div>
         </div>
 
+        {{-- DOCUMENTS --}}
         <div class="col-md-4">
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
                     <div class="card-icon">📄</div>
-                    <h5>Documents</h5>
-                    <p class="text-muted mb-3">Upload files by group and period.</p>
-                    <a class="btn btn-dark btn-sm" href="{{ route('admin.documents.index') }}">Open Module</a>
+
+                    <h5>{{ __('admin_dashboard.documents.title') }}</h5>
+                    <p class="text-muted mb-3">
+                        {{ __('admin_dashboard.documents.desc') }}
+                    </p>
+
+                    <a class="btn btn-dark btn-sm"
+                       href="{{ route('admin.documents.index') }}">
+                        {{ __('admin_dashboard.open') }}
+                    </a>
                 </div>
             </div>
         </div>
 
+        {{-- UNIVERSITIES --}}
         <div class="col-md-4">
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
                     <div class="card-icon">🎓</div>
-                    <h5>Universities</h5>
-                    <p class="text-muted mb-3">Add event links (no DB, JSON only).</p>
-                    <a class="btn btn-dark btn-sm" href="{{ route('admin.universities.index') }}">Open Module</a>
+
+                    <h5>{{ __('admin_dashboard.universities.title') }}</h5>
+                    <p class="text-muted mb-3">
+                        {{ __('admin_dashboard.universities.desc') }}
+                    </p>
+
+                    <a class="btn btn-dark btn-sm"
+                       href="{{ route('admin.universities.index') }}">
+                        {{ __('admin_dashboard.open') }}
+                    </a>
                 </div>
             </div>
         </div>
+
+        {{-- COMMENTS --}}
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="card-icon">💬</div>
+
+                    <h5>{{ __('admin_dashboard.comments.title') }}</h5>
+                    <p class="text-muted mb-3">
+                        {{ __('admin_dashboard.comments.desc') }}
+                    </p>
+
+                    <a class="btn btn-dark btn-sm"
+                       href="{{ route('admin.comments.index') }}">
+                        {{ __('admin_dashboard.open') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <style>
@@ -65,8 +113,13 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary-purple), var(--accent-purple));
+            background: linear-gradient(
+                90deg,
+                var(--primary-purple),
+                var(--accent-purple)
+            );
             border-radius: 2px;
         }
     </style>
+
 @endsection

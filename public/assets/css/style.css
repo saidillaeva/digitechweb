@@ -32,13 +32,14 @@ img{max-width:100%;display:block}
 /* ===== Header + Burger ===== */
 
 .header {
-    position: fixed;          /* 🔥 ВАЖНО */
+    position: fixed;
+    min-height: 72px;/* 🔥 ВАЖНО */
     top: 0;
     left: 0;
     width: 100%;
     z-index: 9999;
 
-    background: rgba(242, 244, 246, 0.92);
+    background: rgba(226, 231, 244, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
 
@@ -72,10 +73,9 @@ img{max-width:100%;display:block}
 
 .container.header-inner {
     display: grid;
-    grid-template-columns: 180px minmax(0, 1fr) 360px;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
-    column-gap: 40px;
-    padding: 15px 40px;
+    padding: 10px 48px;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -83,8 +83,11 @@ img{max-width:100%;display:block}
 
 /* LEFT LOGO */
 .header-left {
-    justify-self: start;
+    display: flex;
+    align-items: center;
+    z-index: 2;
 }
+
 
 .logo {
     display: block;
@@ -125,57 +128,42 @@ img{max-width:100%;display:block}
 }
 
 /* ===== EU LOGO – ALWAYS BLUE GLOW ===== */
-.logo--eu {
+.logo--eu{
     position: relative;
-    gap: 20px;
+    display: inline-block;   /* важно */
+    padding: 14px;           /* создаём место под квадрат */
 }
 
-.logo--eu::after {
-    content: '';
-    position: absolute;
-    inset: -12px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #3b82f6, #60a5fa);
-    opacity: 0.45;                 /* ⬅ ВСЕГДА ВИДНО */
-    z-index: -1;
-    filter: blur(18px);
-}
+
 
 /* сама картинка */
-.logo--eu .logo-img {
-    filter: drop-shadow(0 0 18px rgba(59,130,246,0.7));
+.logo--eu .logo-img{
+    display:block;
+    border-radius: 15px;     /* вот тут меняются углы, если квадрат у img */
+
 }
 
 /* усиление при hover */
-.logo--eu:hover::after {
-    opacity: 0.7;
-}
-
-.logo--eu:hover .logo-img {
-    filter: drop-shadow(0 0 26px rgba(59,130,246,0.9));
-    transform: scale(1.05);
-}
 
 /* ===== DIGITECH LOGO SMALLER ===== */
 .logo--digitech .logo-img {
-    height: 34px;          /* было 55 — теперь аккуратно */
-    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.12));
+    height: 36px;        /* чуть выше */
+    width: auto;
+    transform: scaleX(1.08); /* 🔥 лёгкое растяжение по ширине */
 }
 
 /* hover чуть спокойнее */
 .logo--digitech:hover .logo-img {
-    filter: drop-shadow(0 3px 8px rgba(106, 90, 249, 0.25));
-    transform: translateY(-1px);
+    transform: scaleX(1.08);
 }
 /* расстояние между языками и DigiTech */
 
-
 .nav {
+    position: static;        /* ❌ не absolute */
     display: flex;
-    justify-content: center;
+    justify-content: center; /* ✅ центр */
     align-items: center;
-    max-width: 100%;
-    overflow: visible;
+    z-index: 1;
 }
 
 
@@ -220,11 +208,11 @@ img{max-width:100%;display:block}
 
 .nav-list {
     display: flex;
-    align-items: center;
     gap: 10px;
+    justify-content: center;
+}
+.nav-list > li {
     list-style: none;
-    margin: 0;
-    padding: 0;
 }
 
 
@@ -328,10 +316,9 @@ img{max-width:100%;display:block}
 .header-right {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 24px;
+    gap: 20px;
+    white-space: nowrap;
 }
-
 
 /* LANGUAGE SWITCHER */
 .lang-switcher {
@@ -451,7 +438,7 @@ img{max-width:100%;display:block}
     }
 
     .container.header-inner {
-        padding: 15px 20px;
+        padding: 8px 18px;
     }
 
     .header-right {
@@ -464,6 +451,9 @@ img{max-width:100%;display:block}
 }
 
 @media (max-width: 640px) {
+    .header {
+        min-height: 64px;
+    }
     .lang-switcher {
         padding: 4px;
         gap: 4px;
@@ -481,7 +471,21 @@ img{max-width:100%;display:block}
     .container.header-inner {
         gap: 15px;
     }
+    .logo--eu .logo-img {
+        height: 36px;
+    }
+
+    .logo--digitech .logo-img {
+        height: 30px;
+        transform: scaleX(1.05);
+    }
 }
+@media (min-width: 1600px) {
+    .logo--digitech .logo-img {
+        height: 38px;
+    }
+}
+
 
 /* Smooth scrolling enhancement */
 html {
@@ -512,6 +516,13 @@ html {
     .nav.active::before {
         opacity: 1;
         visibility: visible;
+    }
+
+    .container.header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        grid-template-columns: none; /* 🔥 важно */
     }
 }
 

@@ -1,12 +1,14 @@
 @extends('layouts.main')
 
-@section('content')
+@push('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/contact.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/contactus.css') }}">
+@endpush
+
+@section('content')
 
     <!-- ===== CONTACT HERO ===== -->
-    <section class="contact-hero">
-        style="background-image: url('{{ asset('assets/img/contactus.jpg') }}');">
+    <section class="contact-hero"
+             style="background-image: url('{{ asset('assets/img/contact.jpg') }}');">
         <div class="container">
             <h1>{{ __('contact.hero_title') }}</h1>
             <p>{{ __('contact.hero_subtitle') }}</p>
@@ -45,53 +47,38 @@
                         @csrf
 
                         <label>
-                            Name
+                            {{ __('contact.name') }}
                             <input
                                 type="text"
                                 name="name"
                                 value="{{ old('name') }}"
-                                placeholder="Your full name"
+                                placeholder="{{ __('contact.name_placeholder') }}"
                                 required
                             >
-                        </label>
-
-                        <label>
-                            Email
-                            <input
-                                type="email"
-                                name="email"
-                                value="{{ old('email') }}"
-                                placeholder="example@mail.com"
-                                required
-                            >
-                        </label>
-
-                        <label>
-                            Message
-                            <textarea
-                                name="message"
-                                rows="5"
-                                placeholder="Type your message here..."
-                                required
-                            >{{ old('message') }}</textarea>
-                        </label>
-
-                        <button type="submit">Send message</button>
-                            {{ __('contact.name') }}
-                            <input type="text" placeholder="{{ __('contact.name_placeholder') }}">
                         </label>
 
                         <label>
                             {{ __('contact.email') }}
-                            <input type="email" placeholder="{{ __('contact.email_placeholder') }}">
+                            <input
+                                type="email"
+                                name="email"
+                                value="{{ old('email') }}"
+                                placeholder="{{ __('contact.email_placeholder') }}"
+                                required
+                            >
                         </label>
 
                         <label>
                             {{ __('contact.message') }}
-                            <textarea rows="5" placeholder="{{ __('contact.message_placeholder') }}"></textarea>
+                            <textarea
+                                name="message"
+                                rows="5"
+                                placeholder="{{ __('contact.message_placeholder') }}"
+                                required
+                            >{{ old('message') }}</textarea>
                         </label>
 
-                        <button type="button">
+                        <button type="submit">
                             {{ __('contact.send_button') }}
                         </button>
                     </form>
@@ -99,16 +86,11 @@
 
                 <!-- RIGHT: CONTACT INFO -->
                 <div class="contact-info">
-                    <h2>Contact information</h2>
+                    <h2>📍 {{ __('contact.info_title') }}</h2>
 
-                    <p><strong>Email:</strong> info@digitech.kg</p>
-                    <p><strong>Phone:</strong> +996 (555) 000 000</p>
-                    <p><strong>Address:</strong> Bishkek, Kyrgyzstan</p>
-                    <h2>{{ __('contact.info_title') }}</h2>
-
-                    <p><b>{{ __('contact.email') }}:</b>  info@inai.kg</p>
-                    <p><b>{{ __('contact.phone') }}:</b>  +996 500 549 238</p>
-                    <p><b>{{ __('contact.address') }}:</b> {{ __('contact.location') }}</p>
+                    <p><span class="emoji">📧</span> <b>{{ __('contact.email') }}:</b> info@inai.kg</p>
+                    <p><span class="emoji">📱</span> <b>{{ __('contact.phone') }}:</b> +996 500 549 238</p>
+                    <p><span class="emoji">🏢</span> <b>{{ __('contact.address') }}:</b> {{ __('contact.location') }}</p>
 
                     <div class="map">
                         <iframe
@@ -116,16 +98,12 @@
                             loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
-
                     </div>
                 </div>
+
 
             </div>
         </div>
     </section>
-
-    @push('styles')
-        <link rel="stylesheet" href="{{ asset('assets/css/contact.css') }}">
-    @endpush
 
 @endsection

@@ -27,4 +27,8 @@ return [
     'tl_license' => 'Lizenz des Bildungsministeriums – April 2028',
     'tl_launch' => 'Programmstart – September 2028',
 
+    'analytics_title' => 'Analytik',
+    'visits' => 'Seitenaufrufe:',
+    'analytics_note' => 'Die Statistiken werden automatisch aktualisiert',
+
 ];

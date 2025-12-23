@@ -26,4 +26,8 @@ return [
     'tl_license' => 'License from Ministry of Education, April 2028',
     'tl_launch' => 'Program launch, September 2028',
 
+    'analytics_title' => 'Analytics',
+    'visits' => 'Page visits:',
+    'analytics_note' => 'Statistics are updated automatically',
+
 ];

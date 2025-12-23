@@ -2,287 +2,427 @@
 
 @section('content')
     <style>
-        /* Page Header */
-        .page-header-create {
-            background: linear-gradient(135deg, var(--deep-blue), var(--dark-purple));
-            padding: 2.5rem;
-            border-radius: 18px;
-            margin-bottom: 2.5rem;
-            box-shadow: 0 8px 30px rgba(91, 75, 138, 0.3);
+        :root {
+            --deep-blue: #1e40af;
+            --dark-blue: #1e3a8a;
+            --primary-purple: #7c3aed;
+            --accent-purple: #a855f7;
+            --dark-purple: #6d28d9;
+        }
+
+        .news-create-wrapper {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 2.5rem 1rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 25%, #4c1d95 50%, #1e1b4b 75%, #0f172a 100%);
+            background-size: 200% 200%;
+            animation: gradientFlow 15s ease infinite;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .news-create-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            box-shadow:
+                0 25px 70px rgba(79, 70, 229, 0.35),
+                0 0 0 1px rgba(139, 92, 246, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            padding: 3.5rem;
+            border: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .news-create-page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .news-create-page-header::before {
+            content: '📰';
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .news-create-page-header h4 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 50%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.03em;
+            margin: 0;
+        }
+
+        .news-create-section-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1.75rem;
+            margin-top: 3rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, #7c3aed 0%, #a855f7 50%, transparent 100%);
+            border-image-slice: 1;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .news-create-section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(180deg, #7c3aed 0%, #a855f7 100%);
+            border-radius: 2px;
+        }
+
+        .news-create-section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .news-create-divider {
+            height: 2px;
+            background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(124, 58, 237, 0.3) 20%,
+            rgba(168, 85, 247, 0.4) 50%,
+            rgba(124, 58, 237, 0.3) 80%,
+            transparent 100%);
+            margin: 3rem 0;
+            border: none;
+            position: relative;
+        }
+
+        .news-create-divider::after {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            color: #a855f7;
+            font-size: 1rem;
+            padding: 0 1rem;
+        }
+
+        .news-create-field-group {
+            margin-bottom: 1.75rem;
+        }
+
+        .news-create-label {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.625rem;
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+        }
+
+        .news-create-lang-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.25rem 0.625rem;
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            color: #ffffff;
+            border-radius: 6px;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+        }
+
+        .news-create-input,
+        .news-create-textarea,
+        .news-create-file-input,
+        .news-create-date-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            font-size: 1rem;
+            color: #1e293b;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+        }
+
+        .news-create-input:hover,
+        .news-create-textarea:hover,
+        .news-create-file-input:hover,
+        .news-create-date-input:hover {
+            border-color: #cbd5e1;
+        }
+
+        .news-create-input:focus,
+        .news-create-textarea:focus,
+        .news-create-file-input:focus,
+        .news-create-date-input:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow:
+                0 0 0 4px rgba(124, 58, 237, 0.12),
+                0 4px 12px rgba(124, 58, 237, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .news-create-textarea {
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .news-create-textarea[rows="3"] {
+            min-height: 90px;
+        }
+
+        .news-create-textarea[rows="8"] {
+            min-height: 200px;
+        }
+
+        .news-create-file-input {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 2px dashed #cbd5e1;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .news-create-file-input:hover {
+            border-color: #7c3aed;
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+        }
+
+        .news-create-date-input {
+            cursor: pointer;
+        }
+
+        .news-create-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding-top: 2.5rem;
+            border-top: 2px solid rgba(124, 58, 237, 0.1);
+        }
+
+        .news-create-btn-save {
+            flex: 1;
+            padding: 1.125rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 50%, #a855f7 100%);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow:
+                0 4px 16px rgba(124, 58, 237, 0.4),
+                0 2px 4px rgba(30, 64, 175, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.625rem;
         }
 
-        .page-header-create::before {
-            content: '📰';
-            position: absolute;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 5rem;
-            opacity: 0.15;
-        }
-
-        .page-header-create h4 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: white;
-            margin: 0;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Form Card */
-        .form-card {
-            border: 2px solid rgba(139, 122, 184, 0.2) !important;
-            border-radius: 20px !important;
-            padding: 2.5rem !important;
-            background: white;
-            box-shadow: 0 8px 30px rgba(91, 75, 138, 0.15) !important;
-            position: relative;
-        }
-
-        .form-card::before {
+        .news-create-btn-save::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--primary-purple), var(--accent-purple), var(--primary-purple));
-            border-radius: 20px 20px 0 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
         }
 
-        /* Form Groups */
-        .mb-3 {
-            margin-bottom: 1.75rem !important;
-        }
-
-        /* Form Labels */
-        .form-label {
-            font-weight: 700;
-            color: var(--deep-blue);
-            margin-bottom: 0.75rem;
-            font-size: 0.95rem;
-            display: block;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .form-label::after {
-            content: '';
-            display: inline-block;
-            width: 30px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent-purple), transparent);
-            margin-left: 10px;
-            vertical-align: middle;
-        }
-
-        /* Form Inputs & Textareas */
-        .form-control {
-            border: 2px solid rgba(139, 122, 184, 0.3);
-            border-radius: 12px;
-            padding: 0.85rem 1.25rem;
-            transition: all .3s ease;
-            font-size: 1rem;
-            background: white;
-        }
-
-        .form-control:focus {
-            border-color: var(--accent-purple);
-            box-shadow: 0 0 0 4px rgba(139, 122, 184, 0.15);
-            outline: none;
-            background: white;
-        }
-
-        .form-control:hover:not(:focus) {
-            border-color: rgba(139, 122, 184, 0.5);
-        }
-
-        /* Textarea specific */
-        textarea.form-control {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        /* File Input */
-        input[type="file"].form-control {
-            padding: 0.75rem 1rem;
-            cursor: pointer;
-        }
-
-        input[type="file"].form-control::file-selector-button {
-            background: linear-gradient(135deg, var(--primary-purple), var(--accent-purple));
-            color: white;
-            border: none;
-            padding: 0.5rem 1.25rem;
-            border-radius: 8px;
-            font-weight: 600;
-            margin-right: 1rem;
-            cursor: pointer;
-            transition: all .3s ease;
-        }
-
-        input[type="file"].form-control::file-selector-button:hover {
+        .news-create-btn-save:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(91, 75, 138, 0.3);
+            box-shadow:
+                0 8px 24px rgba(124, 58, 237, 0.5),
+                0 4px 8px rgba(30, 64, 175, 0.3);
         }
 
-        /* Date Input */
-        input[type="date"].form-control {
+        .news-create-btn-save:hover::before {
+            left: 100%;
+        }
+
+        .news-create-btn-save:active {
+            transform: translateY(0);
+        }
+
+        .news-create-btn-cancel {
+            padding: 1.125rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #7c3aed;
+            background: #ffffff;
+            border: 2px solid #7c3aed;
+            border-radius: 12px;
+            text-decoration: none;
             cursor: pointer;
-        }
-
-        /* Error Messages */
-        .text-danger {
-            color: #dc2626 !important;
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
-            font-weight: 500;
-            display: flex;
+            transition: all 0.3s ease;
+            display: inline-flex;
             align-items: center;
-            gap: 6px;
-        }
-
-        .text-danger::before {
-            content: '⚠';
-            font-size: 1rem;
-        }
-
-        /* Button Container */
-        .d-flex.gap-2 {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 2px solid rgba(139, 122, 184, 0.1);
-        }
-
-        /* Save Button */
-        .btn-save {
-            background: linear-gradient(135deg, var(--primary-purple), var(--accent-purple)) !important;
-            border: none !important;
-            color: white !important;
-            font-weight: 600;
-            padding: 0.85rem 2.5rem;
-            border-radius: 12px;
-            transition: all .3s ease;
-            box-shadow: 0 4px 20px rgba(91, 75, 138, 0.3);
+            justify-content: center;
+            gap: 0.625rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-size: 0.95rem;
+            letter-spacing: 0.05em;
         }
 
-        .btn-save:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(91, 75, 138, 0.4);
+        .news-create-btn-cancel:hover {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border-color: #6d28d9;
+            color: #6d28d9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
         }
 
-        /* Cancel Button */
-        .btn-cancel {
-            border: 2px solid var(--primary-purple) !important;
-            color: var(--primary-purple) !important;
-            background: white !important;
-            font-weight: 600;
-            padding: 0.85rem 2.5rem;
-            border-radius: 12px;
-            transition: all .3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-size: 0.95rem;
-        }
-
-        .btn-cancel:hover {
-            background: linear-gradient(135deg, rgba(91, 75, 138, 0.1), rgba(139, 122, 184, 0.15)) !important;
-            border-color: var(--accent-purple) !important;
-            transform: translateY(-2px);
-        }
-
-        /* Field Hints */
-        .field-hint {
-            font-size: 0.85rem;
-            color: var(--accent-purple);
-            margin-top: 0.5rem;
-            font-style: italic;
-        }
-
-        /* Required Asterisk */
-        .form-label:has(+ input[required])::before,
-        .form-label:has(+ textarea[required])::before {
-            content: '*';
-            color: var(--accent-purple);
-            font-weight: 700;
-            margin-right: 4px;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .page-header-create {
-                padding: 1.5rem;
+            .news-create-wrapper {
+                padding: 1.5rem 1rem;
             }
 
-            .page-header-create h4 {
-                font-size: 1.5rem;
+            .news-create-card {
+                padding: 2rem 1.5rem;
+                border-radius: 20px;
             }
 
-            .form-card {
-                padding: 1.5rem !important;
+            .news-create-page-header h4 {
+                font-size: 2rem;
             }
 
-            .btn-save,
-            .btn-cancel {
-                width: 100%;
-            }
-
-            .d-flex.gap-2 {
+            .news-create-actions {
                 flex-direction: column;
+            }
+
+            .news-create-btn-save,
+            .news-create-btn-cancel {
+                width: 100%;
             }
         }
     </style>
 
-    <div class="page-header-create">
-        <h4>Create News</h4>
+    <div class="news-create-wrapper">
+        <div class="news-create-card">
+
+            <div class="news-create-page-header">
+                <h4>{{ __('admin_news.create.title') }}</h4>
+            </div>
+
+            <form method="POST" action="{{ route('admin.news.store') }}" enctype="multipart/form-data">
+                @csrf
+
+                {{-- ===== TITLES ===== --}}
+                <h5 class="news-create-section-title">
+                    {{ __('admin_news.create.titles') }}
+                </h5>
+
+                @foreach(['ru','en','kg','de'] as $lang)
+                    <div class="news-create-field-group">
+                        <label class="news-create-label">
+                            {{ __('admin_news.create.label_title') }}
+                            <span class="news-create-lang-badge">{{ strtoupper($lang) }}</span>
+                        </label>
+                        <input class="news-create-input"
+                               name="title_{{ $lang }}"
+                               @if($lang === 'ru') required @endif
+                               placeholder="{{ __('admin_news.create.ph_title_'.$lang) }}">
+                    </div>
+                @endforeach
+
+                <hr class="news-create-divider">
+
+                {{-- ===== METADATA ===== --}}
+                <h5 class="news-create-section-title">
+                    {{ __('admin_news.create.metadata') }}
+                </h5>
+
+                <div class="news-create-field-group">
+                    <label class="news-create-label">
+                        {{ __('admin_news.create.published_date') }}
+                    </label>
+                    <input type="date" class="news-create-date-input" name="published_at">
+                </div>
+
+                <div class="news-create-field-group">
+                    <label class="news-create-label">
+                        {{ __('admin_news.create.image') }}
+                    </label>
+                    <input type="file" class="news-create-file-input" name="image">
+                </div>
+
+                <hr class="news-create-divider">
+
+                {{-- ===== EXCERPT ===== --}}
+                <h5 class="news-create-section-title">
+                    {{ __('admin_news.create.excerpt_section') }}
+                </h5>
+
+                @foreach(['ru','en','kg','de'] as $lang)
+                    <div class="news-create-field-group">
+                        <label class="news-create-label">
+                            {{ __('admin_news.create.label_excerpt') }}
+                            <span class="news-create-lang-badge">{{ strtoupper($lang) }}</span>
+                        </label>
+                        <textarea class="news-create-textarea"
+                                  name="excerpt_{{ $lang }}"
+                                  rows="3"
+                                  placeholder="{{ __('admin_news.create.ph_excerpt_'.$lang) }}"></textarea>
+                    </div>
+                @endforeach
+
+                <hr class="news-create-divider">
+
+                {{-- ===== CONTENT ===== --}}
+                <h5 class="news-create-section-title">
+                    {{ __('admin_news.create.content_section') }}
+                </h5>
+
+                @foreach(['ru','en','kg','de'] as $lang)
+                    <div class="news-create-field-group">
+                        <label class="news-create-label">
+                            {{ __('admin_news.create.label_content') }}
+                            <span class="news-create-lang-badge">{{ strtoupper($lang) }}</span>
+                        </label>
+                        <textarea class="news-create-textarea"
+                                  name="content_{{ $lang }}"
+                                  rows="8"
+                                  @if($lang === 'ru') required @endif
+                                  placeholder="{{ __('admin_news.create.ph_content_'.$lang) }}"></textarea>
+                    </div>
+                @endforeach
+
+                {{-- ===== BUTTONS ===== --}}
+                <div class="news-create-actions">
+                    <button type="submit" class="news-create-btn-save">
+                        💾 {{ __('admin_news.create.save') }}
+                    </button>
+
+                    <a href="{{ route('admin.news.index') }}" class="news-create-btn-cancel">
+                        ✕ {{ __('admin_news.create.cancel') }}
+                    </a>
+                </div>
+
+            </form>
+        </div>
     </div>
-
-    <form method="POST" action="{{ route('admin.news.store') }}" enctype="multipart/form-data" class="card border-0 shadow-sm form-card">
-        @csrf
-
-        <div class="mb-3">
-            <label class="form-label">Title</label>
-            <input class="form-control" name="title" value="{{ old('title') }}" placeholder="Enter news title" required>
-            @error('title')<div class="text-danger">{{ $message }}</div>@enderror
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Published Date</label>
-            <input class="form-control" type="date" name="published_at" value="{{ old('published_at') }}">
-            <div class="field-hint">Leave empty to use current date</div>
-            @error('published_at')<div class="text-danger">{{ $message }}</div>@enderror
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Image</label>
-            <input class="form-control" type="file" name="image" accept="image/*">
-            <div class="field-hint">Supported formats: JPG, PNG, GIF (Max 2MB)</div>
-            @error('image')<div class="text-danger">{{ $message }}</div>@enderror
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Excerpt</label>
-            <textarea class="form-control" name="excerpt" rows="3" placeholder="Brief summary of the news (optional)">{{ old('excerpt') }}</textarea>
-            <div class="field-hint">Short description shown in previews</div>
-            @error('excerpt')<div class="text-danger">{{ $message }}</div>@enderror
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Content</label>
-            <textarea class="form-control" name="content" rows="10" placeholder="Full news content" required>{{ old('content') }}</textarea>
-            @error('content')<div class="text-danger">{{ $message }}</div>@enderror
-        </div>
-
-        <div class="d-flex gap-2">
-            <button class="btn btn-save"> Save News</button>
-            <a class="btn btn-cancel" href="{{ route('admin.news.index') }}">✕ Cancel</a>
-        </div>
-    </form>
 @endsection

@@ -259,16 +259,37 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ route('admin.dashboard') }}">DigiTech Admin</a>
 
-        <div class="ms-auto d-flex gap-2">
-            <a class="btn btn-outline-light btn-sm" href="{{ route('admin.news.index') }}">News</a>
-            <a class="btn btn-outline-light btn-sm" href="{{ route('admin.documents.index') }}">Documents</a>
-            <a class="btn btn-outline-light btn-sm" href="{{ route('admin.universities.index') }}">Universities</a>
+        <div class="ms-auto d-flex align-items-center gap-2">
+
+            {{-- LANGUAGE SWITCH --}}
+            <div class="btn-group me-3">
+                <a href="{{ route('lang.switch','ru') }}" class="btn btn-outline-light btn-sm">RU</a>
+                <a href="{{ route('lang.switch','en') }}" class="btn btn-outline-light btn-sm">EN</a>
+                <a href="{{ route('lang.switch','ky') }}" class="btn btn-outline-light btn-sm">KG</a>
+                <a href="{{ route('lang.switch','de') }}" class="btn btn-outline-light btn-sm">DE</a>
+            </div>
+
+            <a class="btn btn-outline-light btn-sm" href="{{ route('admin.news.index') }}">
+                {{ __('admin_nav.news') }}
+            </a>
+            <a class="btn btn-outline-light btn-sm" href="{{ route('admin.documents.index') }}">
+                {{ __('admin_nav.documents') }}
+            </a>
+            <a class="btn btn-outline-light btn-sm" href="{{ route('admin.universities.index') }}">
+                {{ __('admin_nav.universities') }}
+            </a>
+            <a class="btn btn-outline-light btn-sm" href="{{ route('admin.comments.index') }}">
+                {{ __('admin_nav.comments') }}
+            </a>
 
             <form method="POST" action="{{ route('admin.logout') }}">
                 @csrf
-                <button class="btn btn-danger btn-sm">Logout</button>
+                <button class="btn btn-danger btn-sm">
+                    {{ __('admin_nav.logout') }}
+                </button>
             </form>
         </div>
+
     </div>
 </nav>
 
