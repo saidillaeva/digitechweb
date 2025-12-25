@@ -13,7 +13,6 @@
         </div>
     </section>
 
-
     <!-- ===== ABOUT LINKS ===== -->
     <section class="mission">
         <div class="container">
@@ -23,14 +22,18 @@
                     <h2>{{ __('about.online_title') }}</h2>
                     <p>{{ __('about.online_desc') }}</p>
 
-                    <ul class="about-links">
-                        <li>
-                            <a href="{{ route('partners') }}">
-                                {{ __('about.link1') }}
+                    <div class="about-universities">
+                        @foreach(config('universities') as $key => $u)
+                            <a href="{{ route('partners.show', $key) }}"
+                               class="about-university"
+                               title="{{ $u['name'] }}">
+                                <img
+                                    src="{{ asset('assets/img/partners/'.$u['logo']) }}"
+                                    alt="{{ $u['name'] }}"
+                                >
                             </a>
-                        </li>
-                    </ul>
-
+                        @endforeach
+                    </div>
                 </div>
 
                 <div class="mission-image">
@@ -109,6 +112,7 @@
                 <div class="tl-item"><span class="tl-year">2027</span><p>{{ __('about.tl_training') }}</p></div>
                 <div class="tl-item"><span class="tl-year">2028</span><p>{{ __('about.tl_license') }}</p></div>
                 <div class="tl-item"><span class="tl-year">2028</span><p>{{ __('about.tl_launch') }}</p></div>
+                <div class="tl-item"><span class="tl-year">2028</span><p>{{ __('about.tl_final_conf') }}</p></div>
             </div>
         </div>
     </section>

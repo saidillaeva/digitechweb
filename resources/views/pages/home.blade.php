@@ -274,22 +274,24 @@
     </section>
 
 
-
     {{-- ================= PARTNERS ================= --}}
     <section class="partners">
         <h2 class="section-title">{{ __('home.partners_title') }}</h2>
 
-
         <div class="partners-carousel">
-            <img src="{{ asset('assets/img/partners/haw.png') }}">
-            <img src="{{ asset('assets/img/partners/maribor.png') }}">
-            <img src="{{ asset('assets/img/partners/inai.png') }}">
-            <img src="{{ asset('assets/img/partners/ysu.png') }}">
-            <img src="{{ asset('assets/img/partners/asue.png') }}">
-            <img src="{{ asset('assets/img/partners/gtu.png') }}">
-            <img src="{{ asset('assets/img/partners/btu.png') }}">
-        </div>
+            @foreach(config('universities') as $partner)
+                <a href="{{ $partner['website'] }}"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="partner-item"
+                   title="{{ $partner['name'] }}">
 
+                    <img src="{{ asset('assets/img/partners/' . $partner['logo']) }}"
+                         alt="{{ $partner['name'] }}">
+                </a>
+            @endforeach
+        </div>
     </section>
+
 
 @endsection

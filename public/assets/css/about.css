@@ -338,6 +338,35 @@
     }
 }
 
+.about-universities {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+}
+
+.about-university {
+    width: 64px;
+    height: 64px;
+    background: #fff;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s ease;
+    box-shadow: 0 6px 20px rgba(0,0,0,.12);
+}
+
+.about-university img {
+    max-width: 48px;
+    max-height: 48px;
+}
+
+.about-university:hover {
+    transform: translateY(-4px);
+}
+
+
 /* 🔄 Адаптив */
 @media (max-width: 900px) {
     .mission-inner {

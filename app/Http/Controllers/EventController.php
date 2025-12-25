@@ -8,9 +8,13 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = News::latest()->paginate(6);
+        $events = News::whereNotNull('published_at')
+            ->orderBy('published_at', 'asc') // 🔥 главное исправление
+            ->paginate(6);
+
         return view('pages.events', compact('events'));
     }
+
 
     public function show(string $slug)
     {

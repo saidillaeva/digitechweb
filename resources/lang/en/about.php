@@ -25,6 +25,8 @@ return [
     'tl_training' => 'Pilot teaching programs, August 2027',
     'tl_license' => 'License from Ministry of Education, April 2028',
     'tl_launch' => 'Program launch, September 2028',
+    'tl_final_conf' => 'Final conference, October 2028',
+
 
     'analytics_title' => 'Analytics',
     'visits' => 'Page visits:',

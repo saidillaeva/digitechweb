@@ -12,9 +12,13 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $items = News::latest()->paginate(10);
+        $items = News::whereNotNull('published_at')
+            ->orderBy('published_at', 'asc') // 🔥 сортировка по дате мероприятия
+            ->paginate(10);
+
         return view('admin.news.index', compact('items'));
     }
+
 
     public function create()
     {

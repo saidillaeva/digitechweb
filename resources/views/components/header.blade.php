@@ -45,11 +45,19 @@
                 <li><a href="{{ route('contact') }}">{{ __('menu.contact') }}</a></li>
 
             </ul>
+
+            <!-- MOBILE LANG SWITCHER -->
+            <div class="lang-switcher lang-mobile">
+                <a href="{{ route('lang.switch', 'en') }}">EN</a>
+                <a href="{{ route('lang.switch', 'ru') }}">RU</a>
+                <a href="{{ route('lang.switch', 'ky') }}">KG</a>
+                <a href="{{ route('lang.switch', 'de') }}">DE</a>
+            </div>
         </nav>
 
-        <!-- RIGHT: LANG + DIGITECH -->
+        <!-- RIGHT: LANG + DIGITECH (DESKTOP ONLY) -->
         <div class="header-right">
-            <div class="lang-switcher">
+            <div class="lang-switcher lang-desktop">
                 <a href="{{ route('lang.switch', 'en') }}">EN</a>
                 <a href="{{ route('lang.switch', 'ru') }}">RU</a>
                 <a href="{{ route('lang.switch', 'ky') }}">KG</a>
@@ -72,6 +80,7 @@
 
     </div>
 </header>
+
 
 <script>
     // Scroll effect

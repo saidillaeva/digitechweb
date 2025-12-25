@@ -26,6 +26,8 @@ return [
     'tl_training' => 'Pilotprogramme – August 2027',
     'tl_license' => 'Lizenz des Bildungsministeriums – April 2028',
     'tl_launch' => 'Programmstart – September 2028',
+    'tl_final_conf' => 'Abschlusskonferenz – October 2028',
+
 
     'analytics_title' => 'Analytik',
     'visits' => 'Seitenaufrufe:',
